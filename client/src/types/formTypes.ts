@@ -1,4 +1,6 @@
 import * as yup from "yup";
-import { Signinschema } from "../schemas/signinSchema";
+import { signinSchema } from "../schemas/signinSchema";
+import { signupSchema } from "../schemas/signupSchema";
 
-export type FormData = yup.InferType<typeof Signinschema>
+export type SignupFormData = yup.InferType< typeof  signupSchema>
+export type SigninFormData = yup.InferType< typeof  signinSchema>

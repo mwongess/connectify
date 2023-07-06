@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { ILoggedInUser, IUserState } from "../../types/statetypes";
+import { ILoggedInUser, IUserState } from "../../types/stateTypes";
 
 const initialState: IUserState = {
   details: {
@@ -22,5 +22,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const {} = userSlice.actions;
+export const {loginSuccess} = userSlice.actions;
 export default userSlice.reducer;

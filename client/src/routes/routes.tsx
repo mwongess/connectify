@@ -12,6 +12,7 @@ import Profile from "../components/Profile/Profile";
 import EditProfile from "../components/EditProfile";
 import SettingsLayout from "../layouts/SettingsLayout";
 import Home from "../components/Home";
+import MessagesLayout from "../layouts/MessagesLayout";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ export const router = createBrowserRouter(
 
       <Route path="/" element={<HomeLayout />}>
         <Route path="/home" element={<Home/>} />
+        <Route path="/messages" element={<MessagesLayout/>} />
         <Route path="" element={<Profile />} />
         <Route path="settings" element={<SettingsLayout/>}>
             <Route path="" element={<EditProfile/>}/>

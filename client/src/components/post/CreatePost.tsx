@@ -8,7 +8,7 @@ const CreatePost = () => {
             name=""
             id=""
             cols={30}
-            rows={4}
+            rows={1}
             placeholder="Write A new Post ..."
           ></textarea>
         </div>

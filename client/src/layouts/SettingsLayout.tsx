@@ -1,18 +1,18 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const SettingsLayout = () => {
   return (
     <div className="flex">
       <div className="flex flex-col gap-3 w-[20%] border-r pr-7 pt-7">
-        <NavLink to="">Edit Profile</NavLink>
+        <Link to="">Edit Profile</Link>
         <hr />
-        <NavLink to="">Language</NavLink>
+        <Link to="">Language</Link>
         <hr />
-        <NavLink to="">Blocking</NavLink>
+        <Link to="">Blocking</Link>
         <hr />
-        <NavLink to="">Notifications</NavLink>
+        <Link to="">Notifications</Link>
         <hr />
-        <NavLink to="">Password</NavLink>
+        <Link to="">Password</Link>
         <hr />
       </div>
       <div className="w-[80%] p-7">

@@ -9,6 +9,9 @@ import AuthLayout from "../layouts/AuthLayout";
 import HomeLayout from "../layouts/HomeLayout";
 import NewsFeed from "../components/NewsFeed";
 import Profile from "../components/Profile/Profile";
+import EditProfile from "../components/EditProfile";
+import SettingsLayout from "../layouts/SettingsLayout";
+import Home from "../components/Home";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,8 +23,11 @@ export const router = createBrowserRouter(
       </Route>
 
       <Route path="/" element={<HomeLayout />}>
-        <Route path="" element={<NewsFeed />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="/home" element={<Home/>} />
+        <Route path="" element={<Profile />} />
+        <Route path="settings" element={<SettingsLayout/>}>
+            <Route path="" element={<EditProfile/>}/>
+        </Route>
       </Route>
     </Route>
   )

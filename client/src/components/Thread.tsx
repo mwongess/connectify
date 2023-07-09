@@ -1,6 +1,6 @@
 const Thread = () => {
   return (
-    <div className="flex gap-2 border border-blue-300 rounded p-3 my-2">
+    <div className="flex gap-2 border border-blue-300 rounded p-3 my-2 text-lg">
       <div>
         <img className="rounded-full bg-blue-300 p-1" src="vite.svg" alt="" />
       </div>

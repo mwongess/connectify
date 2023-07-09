@@ -6,12 +6,12 @@ import Intro from "./Intro"
 const Profile = () => {
   return (
     <div className="">
-      <div className="border border-blue-400 rounded">
+      <div className="border border-blue-500 bg-blue-100 rounded">
         <div>
           <img className="w-full h-[150px]" src="vite.svg" alt="" />
         </div>
         <div className="p-3">
-          <img className="rounded-full border w-[15%]" src="vite.svg " alt="" />
+          <img className="rounded-full border border-blue-500 w-[15%]" src="vite.svg " alt="" />
           <h1 className="text-2xl">Amos Mwongela</h1>
           <p className="text-[#4e5d78]">Software Engineer</p>
         </div>

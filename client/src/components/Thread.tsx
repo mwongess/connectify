@@ -1,3 +1,5 @@
+import {FaRegComment, FaRegHeart, FaRegShareSquare} from "react-icons/fa";
+
 const Thread = () => {
   return (
     <div className="flex gap-2 border border-blue-300 rounded p-3 my-2 text-lg">
@@ -16,6 +18,11 @@ const Thread = () => {
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi,
             vero.
           </p>
+        </div>
+        <div className="flex gap-5 mt-2">
+          <FaRegComment className="cursor-pointer"/>
+          <FaRegHeart className="cursor-pointer"/>
+          <FaRegShareSquare className="cursor-pointer"/>
         </div>
       </div>
     </div>

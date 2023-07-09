@@ -8,13 +8,16 @@ import Signup from "../pages/auth/Signup";
 import AuthLayout from "../layouts/AuthLayout";
 import HomeLayout from "../layouts/HomeLayout";
 import Profile from "../components/Profile/Profile";
-import EditProfile from "../components/EditProfile";
+import EditProfile from "../components/settings/EditProfile";
 import SettingsLayout from "../layouts/SettingsLayout";
 import Home from "../components/Home";
 import MessagesLayout from "../layouts/MessagesLayout";
 import Community from "../components/Community";
 import Explore from "../components/Explore";
 import Notifications from "../components/Notifications";
+import Blocking from "../components/settings/Blocking";
+import Password from "../components/settings/Password";
+import Language from "../components/settings/Language";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +36,10 @@ export const router = createBrowserRouter(
         <Route path="" element={<Profile />} />
         <Route path="settings" element={<SettingsLayout />}>
           <Route path="" element={<EditProfile />} />
+          <Route path="blocking" element={<Blocking />} />
+          <Route path="password" element={<Password />} />
+          <Route path="notifications" element={<Notifications/>}/>
+          <Route path="language" element={<Language />} />
         </Route>
       </Route>
     </Route>

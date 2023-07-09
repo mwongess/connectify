@@ -5,14 +5,14 @@ import { Outlet } from "react-router-dom";
 const HomeLayout = () => {
   return (
     <div>
-      <div>
+      <div className="p-3">
         <TopNav />
       </div>
-      <div>
-        <div>
+      <div className="flex border">
+        <div className="w-[20%] p-3 ">
           <SideNav />
         </div>
-        <div>
+        <div className="w-[80%]">
           <Outlet />
         </div>
       </div>

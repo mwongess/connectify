@@ -31,7 +31,7 @@ const Signin = () => {
         <p>{errors.userName?.message}</p>
       </div>
 
-      <div>
+      <div className="border">
         <input {...register("password")} />
         <p>{errors.password?.message}</p>
       </div>

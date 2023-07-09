@@ -1,6 +1,10 @@
+import Follower from "./Follower"
+
 const Followers = () => {
   return (
-    <div>Followers</div>
+    <div className="">
+        <Follower/>
+    </div>
   )
 }
 

@@ -18,6 +18,7 @@ import Notifications from "../components/Notifications";
 import Blocking from "../components/settings/Blocking";
 import Password from "../components/settings/Password";
 import Language from "../components/settings/Language";
+import ReadThread from "../components/ReadThread";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ export const router = createBrowserRouter(
 
       <Route path="/" element={<HomeLayout />}>
         <Route path="/home" element={<Home />} />
+        <Route path="/read" element={<ReadThread/>}/>
         <Route path="/community" element={<Community />} />
         <Route path="/messages" element={<MessagesLayout />} />
         <Route path="/notifications" element={<Notifications />} />

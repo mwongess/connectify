@@ -5,8 +5,8 @@ import PostList from "./post/PostList";
 const NewsFeed = () => {
   return (
     <div className="col-span-2">
-      <PostList/>
-      <CreatePost/>
+      {/* <PostList/> */}
+      {/* <CreatePost/> */}
       <Thread/>
       <Thread/>
       <Thread/>

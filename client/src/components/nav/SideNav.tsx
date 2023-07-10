@@ -16,7 +16,7 @@ const SideNav = () => {
     <div className="flex flex-col text-[#4e5d78] min-h-screen gap-1">
       <NavLink
         to="/home"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3 "
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3 "
         end
       >
         <FaNewspaper /> Feed
@@ -24,7 +24,7 @@ const SideNav = () => {
       <NavLink
         to="community"
         className={
-          "flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+          "flex items-center gap-2 hover:text-blue-500 rounded-[10px] hover:font-bold  p-3"
         }
         end
       >
@@ -33,7 +33,7 @@ const SideNav = () => {
       </NavLink>
       <NavLink
         to="messages"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px]  p-3"
         end
       >
         <FaFacebookMessenger />
@@ -41,7 +41,7 @@ const SideNav = () => {
       </NavLink>
       <NavLink
         to="notifications"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
         end
       >
         <FaBell />
@@ -49,7 +49,7 @@ const SideNav = () => {
       </NavLink>
       <NavLink
         to="explore"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
         end
       >
         <FaGlobe />
@@ -57,7 +57,7 @@ const SideNav = () => {
       </NavLink>
       <NavLink
         to="/"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
         end
       >
         <FaUserAlt />
@@ -65,14 +65,14 @@ const SideNav = () => {
       </NavLink>
       <NavLink
         to="/settings"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
       >
         <FaRegSun />
         Settings
       </NavLink>
       <NavLink
         to="/auth/login"
-        className="flex items-center gap-2 hover:bg-[#4e5d78] rounded-[10px] hover:text-white p-3"
+        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
         end
       >
         <FaSignOutAlt />

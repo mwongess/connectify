@@ -1,6 +1,14 @@
+import Comment from "./Comment"
+import CreateComment from "./CreateComment"
+
 const CommentList = () => {
   return (
-    <div>CommentList</div>
+    <div>
+      <CreateComment/>
+      <Comment/>
+      <Comment/>
+      <Comment/>
+    </div>
   )
 }
 

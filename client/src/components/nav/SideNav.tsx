@@ -14,6 +14,9 @@ import {
 const SideNav = () => {
   return (
     <div className="flex flex-col text-[#4e5d78] min-h-screen gap-1">
+      <div className="mb-4 select-none">
+        <img className="h-[3rem]" src="/logo1.png" alt="" />
+      </div>
       <NavLink
         to="/home"
         className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3 "

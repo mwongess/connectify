@@ -20,7 +20,7 @@ const Signup = () => {
 
   return (
     <div className="flex">
-      <div className="w-[60%] bg-[#293145] min-h-screen"></div>
+      <div className="auth w-[60%] min-h-screen"></div>
       <form
         className="flex flex-col items-center justify-center  w-[40%] gap-2 p-[7rem] "
         onSubmit={handleSubmit(onSubmit)}
@@ -62,17 +62,7 @@ const Signup = () => {
         <button className="bg-blue-800 text-white rounded-[10px] w-full p-2">
           Sign Up
         </button>
-        <p>Continue with</p>
-        <div className="flex justify-between gap-2 w-full">
-          <button className="flex items-center gap-3 border w-[50%] p-2 rounded-[10px]">
-            <img className=" w-[1rem] " src="/google.png" alt="" />
-            Google
-          </button>
-          <button className="flex items-center gap-3 border w-[50%] p-2 rounded-[10px]">
-            <FaFacebookF className="text-blue-800" />
-            Facebook
-          </button>
-        </div>
+        
       </form>
     </div>
   );

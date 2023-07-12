@@ -2,6 +2,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+*{
+    
+}
 .active{
     background-color: #4e5d78;
     color: #fff !important;

@@ -25,19 +25,20 @@ const Signin = () => {
   const onSubmit = (data: ILoginPayload) => loginUser(dispatch, data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <input {...register("userName")} />
-        <p>{errors.userName?.message}</p>
-      </div>
+    <div className="flex">
+      <div className="w-[50%] bg-[#293145] h-screen"></div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <input className="border" {...register("userName")} />
+          <p>{errors.userName?.message}</p>
+        </div>
 
-      <div className="border">
-        <input {...register("password")} />
-        <p>{errors.password?.message}</p>
-      </div>
-
-      <input type="submit" />
-    </form>
+        <div>
+          <input className="border" {...register("password")} />
+          <p>{errors.password?.message}</p>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -34,7 +34,7 @@ const Signin = () => {
         <h1 className="font-bold text-2xl">Login</h1>
         <label htmlFor="">Username</label>
         <input
-          className="bg-blue-100 border rounded-[50px]  p-2 w-full"
+          className="border border-blue-600 rounded  p-2 w-full"
           {...register("userName")}
         />
         <p className="text-red-600">{errors.userName?.message}</p>
@@ -43,21 +43,21 @@ const Signin = () => {
       <div className="w-full">
         <label htmlFor="">Password</label>
         <input
-          className="bg-blue-100 border rounded-[50px]  p-2 w-full"
+          className="border border-blue-600 rounded  p-2 w-full"
           {...register("password")}
         />
         <p className="text-red-600">{errors.password?.message}</p>
       </div>
-      <button className="bg-blue-800 text-white rounded-[10px] w-full p-2 mt-2">
+      <button className="bg-blue-800 text-white rounded w-full p-2 mt-3">
         Login
       </button>
       <p>Continue with</p>
       <div className="flex justify-between gap-2 w-full mt-2">
-        <button className="flex items-center gap-3 border w-[50%] p-2 rounded-[10px]">
+        <button className="flex items-center gap-3 border border-black w-[50%] p-2 rounded">
           <img className=" w-[1rem] " src="/google.png" alt="" />
           Google
         </button>
-        <button className="flex items-center gap-3 border w-[50%] p-2  rounded-[10px]">
+        <button className="flex items-center gap-3 border border-black w-[50%] p-2  rounded">
           <FaFacebookF className="text-blue-800" />
           Facebook
         </button>

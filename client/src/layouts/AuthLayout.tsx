@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
   return (
-    <div className="sm:flex">
-      <div className="relative auth sm:w-[60%] bg-[url(/auth-left.png)] bg-center bg-no-repeat bg-cover min-h-screen">
+    <div className=" sm:flex sm:h-screen">
+      <div className="hidden sm:block relative auth sm:w-[60%] bg-[url(/auth-left.png)] bg-center bg-no-repeat bg-cover min-h-screen">
         <div className="absolute top-0 left-0 w-full h-full bg-[#293145] bg-opacity-90">
           <div>
             <img

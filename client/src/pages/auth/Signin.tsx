@@ -27,7 +27,7 @@ const Signin = () => {
 
   return (
     <form
-      className="flex flex-col items-center justify-center  w-[40%] gap-2 p-[7rem] "
+      className="sm:flex flex-col sm:items-center sm:justify-center  sm:w-[40%] w-full gap-2 sm:p-[7rem] p-[2rem]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="w-full">
@@ -48,16 +48,16 @@ const Signin = () => {
         />
         <p className="text-red-600">{errors.password?.message}</p>
       </div>
-      <button className="bg-blue-800 text-white rounded-[10px] w-full p-2">
+      <button className="bg-blue-800 text-white rounded-[10px] w-full p-2 mt-2">
         Login
       </button>
       <p>Continue with</p>
-      <div className="flex justify-between gap-2 w-full">
+      <div className="flex justify-between gap-2 w-full mt-2">
         <button className="flex items-center gap-3 border w-[50%] p-2 rounded-[10px]">
           <img className=" w-[1rem] " src="/google.png" alt="" />
           Google
         </button>
-        <button className="flex items-center gap-3 border w-[50%] p-2 rounded-[10px]">
+        <button className="flex items-center gap-3 border w-[50%] p-2  rounded-[10px]">
           <FaFacebookF className="text-blue-800" />
           Facebook
         </button>

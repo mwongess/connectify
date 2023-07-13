@@ -57,7 +57,7 @@ const Signup = () => {
         />
         <p className="text-red-600">{errors.password?.message}</p>
       </div>
-      <button className="bg-blue-800 text-white rounded-[10px] w-full p-2">
+      <button className="bg-blue-800 text-white rounded-[10px] w-full p-2 mt-2">
         Sign Up
       </button>
       <p>Continue with</p>

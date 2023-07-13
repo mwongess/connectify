@@ -19,10 +19,12 @@ import Blocking from "../components/settings/Blocking";
 import Password from "../components/settings/Password";
 import Language from "../components/settings/Language";
 import ReadThread from "../components/ReadThread";
+import Shop from "../components/IAN/Shop";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      <Route path="/ian" element={<Shop/>}/>
       <Route path="/auth" element={<AuthLayout />}>
         <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />

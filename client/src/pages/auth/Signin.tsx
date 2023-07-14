@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../types/stateTypes";
+import { useDispatch } from "react-redux";
+// import { RootState } from "../../types/stateTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUser } from "../../redux/apicalls/authApiCalls";

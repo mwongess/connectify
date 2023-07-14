@@ -1,5 +1,3 @@
-import { FaPenAlt, FaPenSquare } from "react-icons/fa";
-
 const CreatePost = () => {
   return (
     <div>

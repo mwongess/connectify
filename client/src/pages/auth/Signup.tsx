@@ -1,13 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../types/stateTypes";
+// import { useSelector, useDispatch } from "react-redux";
+// import { RootState } from "../../types/stateTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignupFormData } from "../../types/formTypes";
 import { ISignupPayload } from "../../types/userTypes";
 import { signupSchema } from "../../schemas/signupSchema";
-import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 const Signup = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const {
     register,
     handleSubmit,

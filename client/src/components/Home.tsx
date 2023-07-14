@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import NewsFeed from "./NewsFeed";
 import Recommendations from "./follows/Recommendations";
 import FloatingBtn from "./buttons/FloatingBtn";

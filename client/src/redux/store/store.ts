@@ -11,7 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import { RootState } from "../../types/stateTypes";
+// import { RootState } from "../../types/stateTypes";
 const persistConfig = {
   key: "root",
   version: 1,

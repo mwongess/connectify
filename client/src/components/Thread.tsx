@@ -1,4 +1,4 @@
-import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
+// import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 import CommentList from "./comments/CommentList";
 import { useState } from "react";
 import ThreadOptions from "./ThreadOptions";

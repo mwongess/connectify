@@ -1,5 +1,5 @@
-import Recommendations from "../follows/Recommendations";
-import NewsFeed from "../NewsFeed";
+// import Recommendations from "../follows/Recommendations";
+// import NewsFeed from "../NewsFeed";
 import Intro from "./Intro";
 
 const Profile = () => {

@@ -11,9 +11,9 @@ import { FaFacebookF } from "react-icons/fa";
 const Signin = () => {
   const dispatch = useDispatch();
 
-  const userName = useSelector(
-    (state: RootState) => state.user.details!.userName
-  );
+  // const userName = useSelector(
+  //   (state: RootState) => state.user.details!.userName
+  // );
 
   const {
     register,

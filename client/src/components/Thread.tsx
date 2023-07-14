@@ -10,7 +10,7 @@ const Thread = () => {
   const toggleShowComments = () => {
     setShowComments((prevState) => !prevState);
   };
-  
+
   return (
     <div className="flex gap-2 bg-white rounded-[10px] p-3 mb-4 text-lg select-none">
       <div>

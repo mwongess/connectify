@@ -1,6 +1,6 @@
 const MessageBtn = () => {
   return (
-    <div>MessageBtn</div>
+   <button className="bg-blue-500 text-white p-3 rounded">Message</button>
   )
 }
 

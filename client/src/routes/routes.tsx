@@ -20,6 +20,7 @@ import Password from "../components/settings/Password";
 import Language from "../components/settings/Language";
 import ReadThread from "../components/ReadThread";
 import Signup from "../pages/auth/Signup";
+import NotificationList from "../components/NotificationList";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,7 +35,7 @@ export const router = createBrowserRouter(
         <Route path="/read" element={<ReadThread />} />
         <Route path="/community" element={<Community />} />
         <Route path="/messages" element={<MessagesLayout />} />
-        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/notifications" element={<NotificationList />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="" element={<Profile />} />
         <Route path="settings" element={<SettingsLayout />}>

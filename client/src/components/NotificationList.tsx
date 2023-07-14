@@ -1,9 +1,13 @@
-// const NotificationList = () => {
-//   return (
-//     <div>
-//         <Noti
-//     </div>
-//   )
-// }
+import Notification from "./Notification"
 
-// export default NotificationList
+const NotificationList = () => {
+  return (
+    <div className="rounded-[10px] bg-blue-200 p-3">
+        <Notification/>
+        <Notification/>
+        <Notification/>
+    </div>
+  )
+}
+
+export default NotificationList

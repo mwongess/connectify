@@ -1,11 +1,13 @@
-import Follower from "./Follower"
+import Follower from "./Follower";
 
 const Followers = () => {
   return (
-    <div className="">
-        <Follower/>
-    </div>
-  )
-}
+    <>
+      <Follower />
+      <Follower />
+      <Follower />
+    </>
+  );
+};
 
-export default Followers
+export default Followers;

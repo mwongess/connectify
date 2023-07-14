@@ -9,7 +9,7 @@ const Thread = () => {
     setShowComments((prevState) => !prevState);
   };
   return (
-    <div className="flex gap-2 border border-blue-300 rounded p-3 my-2 text-lg select-none">
+    <div className="flex gap-2 border border-blue-500 rounded p-3 my-2 text-lg select-none">
       <div>
         <img
           className=" h-[3rem] w-[3rem] rounded-full "

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 const CreateComment = () => {
   const [canPost, setCanPost] = useState<boolean>(false);

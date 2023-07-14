@@ -13,7 +13,7 @@ const Profile = () => {
             alt=""
           />
         </div>
-        <div className="p-3 inline-block  translate-y-[-10%]">
+        <div className="p-3 inline-block  translate-y-[-20%]">
           <img
             className="rounded-full border border-blue-500 "
             src="https://media.licdn.com/dms/image/C4D03AQELuT887ddBjA/profile-displayphoto-shrink_200_200/0/1657864494797?e=1694649600&v=beta&t=8AnzqZSKdNKTTFanSEf6k1Qpe9kYGJXcvuELsPkiI_c "
@@ -23,8 +23,9 @@ const Profile = () => {
           <p className="text-[#4e5d78]">Software Engineer</p>
           <div className="grid grid-cols-4 gap-5 mt-5">
             <Intro />
-            <NewsFeed />
-            <Recommendations />
+            {/* <NewsFeed /> */}
+            <div></div>
+            {/* <Recommendations /> */}
           </div>
         </div>
       </div>

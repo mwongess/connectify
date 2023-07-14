@@ -31,13 +31,14 @@ export const router = createBrowserRouter(
       </Route>
 
       <Route path="/" element={<HomeLayout />}>
+        <Route path="" element={<Profile />} />
+        <Route path="/:username" element={<Profile />} />
         <Route path="/home" element={<Home />} />
         <Route path="/read" element={<ReadThread />} />
         <Route path="/community" element={<Community />} />
         <Route path="/messages" element={<MessagesLayout />} />
         <Route path="/notifications" element={<NotificationList />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="" element={<Profile />} />
         <Route path="settings" element={<SettingsLayout />}>
           <Route path="" element={<EditProfile />} />
           <Route path="blocking" element={<Blocking />} />

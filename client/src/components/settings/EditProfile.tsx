@@ -1,6 +1,6 @@
 const EditProfile = () => {
   return (
-    <div className="flex flex-col gap-5 text-[#4e5d78] ">
+    <div className="flex flex-col gap-5 text-[#4e5d78] bg-white ">
       <h1 className="font-bold text-xl">Edit Profile</h1>
       <div>
         <img

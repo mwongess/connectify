@@ -3,11 +3,8 @@ import { FaPenAlt, FaPenSquare } from "react-icons/fa";
 const CreatePost = () => {
   return (
     <div>
-      <form className="border-2 border-green-200 p-2 rounded" action="">
+      <form className="border-2 bg-white mb-3  p-2 rounded-[10px]" action="">
         <div className="flex ">
-          <p className="border-2 border-green-400 rounded-full p-1 h-[2rem]">
-            {/* <FaPenAlt className="text-green-500  text-xl " /> */}
-          </p>
           <textarea
             className=" rounded w-full p-3 focus:outline-none"
             name=""

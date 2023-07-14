@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import NewsFeed from "./NewsFeed";
 import Recommendations from "./follows/Recommendations";
 import FloatingBtn from "./buttons/FloatingBtn";
+import CreatePost from "./post/CreatePost";
 
 const Home = () => {
   return (
     <>
-      <h1 className="font-bold ">Home</h1>
       <div className="flex justify-between gap-2">
         <div className="w-[70%]">
+          <CreatePost />
           <NewsFeed />
         </div>
-        <div className="w-[30%] mt-2">
+        <div className="w-[30%] rounded-[10px] h-fit bg-white p-3" >
           <input
             className="border border-blue-500 w-full rounded p-2 bg-transparent"
             type="search"

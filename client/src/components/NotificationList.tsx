@@ -2,7 +2,7 @@ import Notification from "./Notification"
 
 const NotificationList = () => {
   return (
-    <div className="rounded-[10px] bg-blue-200 p-3">
+    <div className="rounded-[10px]  border border-blue-300">
         <Notification/>
         <Notification/>
         <Notification/>

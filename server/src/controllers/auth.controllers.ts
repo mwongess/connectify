@@ -1,8 +1,9 @@
-import { Request, Response } from "express";
 import { LoginSchema, SignupSchema } from "../schemas/auth.schemas";
+import { ILoginRequest, ISignupRequest } from "../types/auth.types";
 import { Connection } from "../helpers/db.helpers";
-import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 const db = new Connection();
@@ -34,12 +35,12 @@ export const signup = async (req: ISignupRequest, res: Response) => {
 
 export const login = async (req: ILoginRequest, res: Response) => {
   try {
-    let { email, password } = req.body;
+    let { userName, password } = req.body;
     const { error, value } = LoginSchema.validate(req.body);
     if (error) {
       return res.status(500).json({ error: error.details[0].message });
     }
-    const user: IUser[] = (await db.executeProcedure("GetUser", { email }))
+    const user = (await db.executeProcedure("GetUser", { userName }))
       .recordset;
     if (!user[0]) {
       return res.json({ error: "Account doesnt exist!" });

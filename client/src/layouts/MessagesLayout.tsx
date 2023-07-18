@@ -1,6 +1,5 @@
-// import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import MessageList from "../components/MessageList"
-import Chat from "../components/chat/Chat"
 
 const MessagesLayout = () => {
   return (
@@ -9,8 +8,7 @@ const MessagesLayout = () => {
             <MessageList/>
         </div>
         <div className="w-[65%] ">
-            {/* <Outlet/> */}
-            <Chat/>
+            <Outlet/>
         </div>
     </div>
   )

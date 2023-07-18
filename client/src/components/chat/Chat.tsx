@@ -10,7 +10,7 @@ interface Message {
 }
 
 const Chat: React.FC = () => {
-  const [sender, setSender] = useState("");
+  const [senderID, setSenderID] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -39,9 +39,9 @@ const Chat: React.FC = () => {
     };
   }, []);
 
-  const handleSenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSender(event.target.value);
-  };
+  //   const handleSenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     setSender(event.target.value);
+  //   };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
@@ -50,9 +50,13 @@ const Chat: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (sender && message) {
+    if (message) {
       // Send the message to the server
-      socket.emit("chatMessage", { sender, content: message });
+      socket.emit("chatMessage", {
+        senderID,
+        recepientID: "recepientID",
+        messageContent: message,
+      });
 
       // Clear the input fields
       setMessage("");
@@ -84,13 +88,6 @@ const Chat: React.FC = () => {
         </div>
         <div className="mb-4">
           <form className="flex" onSubmit={handleSubmit}>
-            {/* <input
-              type="text"
-              placeholder="Your name"
-              className="border rounded-lg px-3 py-2 w-1/3"
-              value={sender}
-              onChange={handleSenderChange}
-            /> */}
             <input
               type="text"
               placeholder="Type a message"

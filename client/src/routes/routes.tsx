@@ -21,6 +21,7 @@ import Language from "../components/settings/Language";
 import ReadThread from "../components/ReadThread";
 import Signup from "../pages/auth/Signup";
 import NotificationList from "../components/NotificationList";
+import Chat from "../components/chat/Chat";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,7 +37,9 @@ export const router = createBrowserRouter(
         <Route path="/home" element={<Home />} />
         <Route path="/read" element={<ReadThread />} />
         <Route path="/community" element={<Community />} />
-        <Route path="/messages" element={<MessagesLayout />} />
+        <Route path="/messages" element={<MessagesLayout />} >
+          <Route path=":userName" element={<Chat/>}/>
+        </Route>
         <Route path="/notifications" element={<NotificationList />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="settings" element={<SettingsLayout />}>

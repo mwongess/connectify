@@ -2,7 +2,7 @@ import Follow from "./Follow"
 
 const Recommendations = () => {
   return (
-    <div>
+    <div className="">
         <Follow/>
         <Follow/>
         <Follow/>

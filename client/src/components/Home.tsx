@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <div className="sm:flex justify-between gap-2">
-        <div className="p-3 sm:0 w-full sm:w-[70%]">
+        <div className="p-3 sm:p-0 w-full sm:w-[70%]">
           <CreatePost />
           <NewsFeed />
         </div>

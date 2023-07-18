@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const HomeLayout = () => {
   return (
-    <div className="bg-[#e5e7eb]">
+    <div className="bg-[#e5e7eb] min-h-screen">
       <div className="flex border">
         <div className="hidden sm:block w-[20%] p-3 ">
           <SideNav />

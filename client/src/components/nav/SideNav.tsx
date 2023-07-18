@@ -13,7 +13,7 @@ import {
 
 const SideNav = () => {
   return (
-    <div className="flex flex-col text-[#4e5d78] min-h-screen gap-1 bg-white rounded-[10px] p-3">
+    <div className="fixed w-[18%] flex flex-col text-[#4e5d78] min-h-screen gap-1 bg-white rounded-[10px] p-3">
       <div className="mb-4 select-none">
         <img className="h-[3rem]" src="/logo1.png" alt="" />
       </div>

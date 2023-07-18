@@ -4,6 +4,7 @@ import { authRouter } from "./routes/auth.routes";
 import { Server, Socket } from "socket.io";
 import http from "http";
 import { saveMessage } from "./utils/saveMessage";
+
 // Create Express app and HTTP server
 const app: Application = express();
 const server = http.createServer(app);
@@ -21,13 +22,17 @@ io.on("connection", (socket: Socket) => {
   // Handle incoming messages
   socket.on(
     "chatMessage",
-    async (data: { sender: string; content: string; recipient: string }) => {
+    async (data: {
+      senderID: string;
+      messageContent: string;
+      recipientID: string;
+    }) => {
       try {
         // Save the message to the database
-        await saveMessage(data.sender,data.recipient, data.content);
+        await saveMessage(data.senderID, data.recipientID, data.messageContent);
 
         // Send the message to the specified recipient
-        const recipientSocket = findRecipientSocket(data.recipient);
+        const recipientSocket = findRecipientSocket(data.recipientID);
         if (recipientSocket) {
           recipientSocket.emit("chatMessage", data);
         } else {
@@ -46,10 +51,10 @@ io.on("connection", (socket: Socket) => {
 });
 
 // Find the socket of the specified recipient
-function findRecipientSocket(recipient: string): Socket | undefined {
+function findRecipientSocket(recipientID: string): Socket | undefined {
   const sockets = io.sockets.sockets.values();
   for (const socket of sockets) {
-    if (socket.data.username === recipient) {
+    if (socket.data.recipientID === recipientID) {
       return socket;
     }
   }

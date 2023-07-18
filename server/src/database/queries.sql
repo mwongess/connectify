@@ -192,10 +192,10 @@ VALUES
 
 -- Create the Messages table
 CREATE TABLE Messages (
-    ID INT IDENTITY(1, 1) PRIMARY KEY,
-    SenderID INT NOT NULL,
-    RecipientID INT NOT NULL,
-    MessageContent VARCHAR(MAX) NOT NULL,
+    messageID INT IDENTITY(1, 1) PRIMARY KEY,
+    senderID INT NOT NULL,
+    recipientID INT NOT NULL,
+    messageContent VARCHAR(MAX) NOT NULL,
     Timestamp DATETIME NOT NULL,
     -- Add other columns as needed
 );

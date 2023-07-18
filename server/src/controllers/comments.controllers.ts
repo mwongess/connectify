@@ -2,14 +2,15 @@ import { Request, Response } from "express";
 import { Connection } from "../helpers/db.helpers";
 import { postExists } from "../utils/postExists";
 import { commentExists } from "../utils/commentExists";
+import { ICommentRequest } from "../types/other.types";
 
 const db = new Connection();
 
 // get comments
-export const getComments = async (req: Request, res: Response) => {
+export const getComments = async (req: ICommentRequest, res: Response) => {
   try {
     const { postID } = req.params;
-    // const {userID} = req.user!
+    const { userID } = req.user!;
     if (!(await postExists(postID))) {
       res.json({ error: "Post may have been deleted!!" });
     }
@@ -26,10 +27,10 @@ export const getComments = async (req: Request, res: Response) => {
   }
 };
 // comment
-export const createComment = async (req: Request, res: Response) => {
+export const createComment = async (req: ICommentRequest, res: Response) => {
   try {
     const { postID, commentText } = req.body;
-    // const {userID} = req.user!
+    const { userID } = req.user!;
     if (!(await postExists(postID))) {
       res.json({ error: "Post may have been deleted😁" });
     }
@@ -40,10 +41,10 @@ export const createComment = async (req: Request, res: Response) => {
 };
 
 // delete comment
-export const deleteComment = async (req: Request, res: Response) => {
+export const deleteComment = async (req: ICommentRequest, res: Response) => {
   try {
     const { commentID } = req.body;
-    // const {userID} = req.user!
+    const { userID } = req.user!;
     if (!(await commentExists(commentID))) {
       res.json({ error: "Comment is already deleted!!" });
     }

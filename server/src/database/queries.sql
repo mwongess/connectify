@@ -140,7 +140,7 @@ CREATE TABLE Friends (
     ID INT IDENTITY(1, 1) PRIMARY KEY,
     UserID1 INT NOT NULL,
     UserID2 INT NOT NULL,
-    RequestStatus VARCHAR(50) NOT NULL,
+    requestStatus VARCHAR(50) NOT NULL,
     -- Add other columns as needed
 );
 

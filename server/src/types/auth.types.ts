@@ -15,3 +15,10 @@ export interface ISignupRequest extends Request {
     password: string;
   };
 }
+export interface IUserInfo {
+  userID: string
+  userName: string;
+  email: string;
+  iat: number;
+  exp: number;
+}

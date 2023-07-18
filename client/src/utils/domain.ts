@@ -1,1 +1,1 @@
-export const domain: string = ""
+export const api: string = ""

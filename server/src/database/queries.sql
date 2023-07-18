@@ -27,7 +27,8 @@ CREATE TABLE Posts (
     ID INT IDENTITY(1, 1) PRIMARY KEY,
     UserID INT NOT NULL,
     Content VARCHAR(255) NOT NULL,
-    Timestamp DATETIME NOT NULL,
+    imgUrl VARCHAR(255) DEFAULT NULL,
+    Timestamp DATETIME NOT NULL
     -- Add other columns as needed
 );
 

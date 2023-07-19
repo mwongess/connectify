@@ -10,7 +10,7 @@ interface Message {
 }
 
 const Chat: React.FC = () => {
-  const [senderID, setSenderID] = useState("");
+  const [senderID] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {

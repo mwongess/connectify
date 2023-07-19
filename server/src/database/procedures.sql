@@ -1,16 +1,17 @@
 -- AUTH
--- Signup new users
+-- SAVE USER
     CREATE PROCEDURE SaveUser
         @userName VARCHAR(255),
         @password VARCHAR(255),
         @email VARCHAR(255),
+        @profileUrl VARCHAR(255)
     AS
     BEGIN
-        INSERT INTO Users (username, password, email)
-        VALUES (@userName, @password, @email);
+        INSERT INTO Users (username, password, email, profileUrl)
+        VALUES (@userName, @password, @email,  @profileUrl);
     END;
-
-    -- Get user with username
+-- 
+-- GET ONE USER
     CREATE PROCEDURE GetUser
         @userName VARCHAR(255)
     AS
@@ -21,7 +22,7 @@
     END;
 -- 
 -- POSTS
--- Get alll posts
+-- GET POSTS MADE BY A USER
     CREATE PROCEDURE GetUserPosts
         @userID INT
     AS
@@ -30,7 +31,20 @@
         FROM posts p
         WHERE P.userID = @userID;
     END;
--- Save post
+-- 
+-- GET POSTS FROM FRIENDS
+    CREATE PROCEDURE GetConnectedUserPosts
+        @userID INT
+    AS
+    BEGIN
+        SELECT p.*
+        FROM posts p
+        INNER JOIN friends f ON p.userID = f.userID2
+        WHERE f.userID1 = @userID AND f.requestStatus = 'Accepted';
+    END;
+
+-- 
+-- SAVE A POST
     CREATE PROCEDURE SavePost
         @userID INT,
         @content VARCHAR(255),
@@ -41,7 +55,17 @@
         INSERT INTO Posts (userID, content, imgUrl, timestamp)
         VALUES (@userID, @content, @imgUrl, @timestamp);
     END;
-
+-- 
+-- GET A SINGLE POST
+    CREATE PROCEDURE GetPost
+        @postID INT
+    AS
+    BEGIN
+        SELECT *
+        FROM posts
+        WHERE postID = @postID;
+    END;
+-- 
 -- FRIENDS
     CREATE PROCEDURE GetUserFriends
         @userID INT
@@ -52,7 +76,8 @@
         INNER JOIN friends f ON u.userID = f.userID2
         WHERE f.userID1 = @userID AND f.requestStatus = 'Accepted';
     END;
--- Save a friend
+-- 
+-- SAVE A FRIEND
     CREATE PROCEDURE SaveFriend
         @userID1 INT,
         @userID2 INT,
@@ -62,6 +87,7 @@
         INSERT INTO friends (userID1, userID2, requestStatus)
         VALUES (@userID1, @userID2, @requestStatus);
     END;
+-- 
 -- DELETE FRIEND
     CREATE PROCEDURE DeleteFriend
         @friendID INT
@@ -70,10 +96,9 @@
         DELETE FROM friends
         WHERE friendID = @friendID;
     END;
-
-
+-- 
 -- COMMENTS
--- Get all post comments
+-- GET ALL COMMENTS
     CREATE PROCEDURE GetPostComments
         @postID INT
     AS
@@ -82,7 +107,18 @@
         FROM comments c
         WHERE c.postID = @postID;
     END;
--- Save a post comment
+-- 
+--  GET ONE COMMENT
+    CREATE PROCEDURE GetComment
+        @commentID INT
+    AS
+    BEGIN
+        SELECT *
+        FROM comments
+        WHERE commentID = @commentID;
+    END;
+-- 
+-- SAVE A POST COMMENT
     CREATE PROCEDURE SaveComment
         @postID INT,
         @userID INT,
@@ -93,6 +129,7 @@
         INSERT INTO comments (postID, userID, commentText, timestamp)
         VALUES (@postID, @userID, @commentText, @timestamp);
     END;
+-- 
 -- DELETE COMMENT
     CREATE PROCEDURE DeleteComment
         @commentID INT
@@ -101,10 +138,9 @@
         DELETE FROM comments
         WHERE commentID= @commentID;
     END;
-
-
+-- 
 -- NOTIFICATIONS
--- Get all the user notifications
+-- GET ALL NOTIFICATIONS
     CREATE PROCEDURE GetUserNotifications
         @userID INT
     AS
@@ -113,6 +149,7 @@
         FROM notifications n
         WHERE n.userID = @userID;
     END;
+-- 
 -- SAVE NOTIFICATION
     CREATE PROCEDURE SaveNotification
         @userID INT,
@@ -124,6 +161,7 @@
         INSERT INTO notifications (userID, notificationType, targetID, timestamp)
         VALUES (@userID, @notificationType, @targetID, @timestamp);
     END;
+-- 
 -- DELETE NOTIFICATION
     CREATE PROCEDURE DeleteNotification
         @notificationID INT
@@ -132,8 +170,7 @@
         DELETE FROM notifications
         WHERE notificationID = @notificationID;
     END;
-
-
+-- 
 -- MESSAGES
 -- GET ALL MESSAGES
     CREATE PROCEDURE GetUserMessages
@@ -144,7 +181,7 @@
         FROM messages m
         WHERE m.senderID = @userID OR m.recipientID = @userID;
     END;
-
+-- 
 -- SAVE A MESSAGE
     CREATE PROCEDURE SaveMessage
         @senderID INT,
@@ -156,15 +193,18 @@
         INSERT INTO messages (senderID, recipientID, messageContent, timestamp)
         VALUES (@senderID, @recipientID, @messageContent, @timestamp);
     END;
+-- 
 -- DELETE A MESSAGE
     CREATE PROCEDURE DeleteMessage
-        @messageID INT
+        @messageID INT,
+        @userID INT
     AS
     BEGIN
         DELETE FROM messages
-        WHERE messageID = @messageID;
+        WHERE messageID = @messageID
+        AND (senderID = @userID OR recipientID = @userID);
     END;
-
+-- 
 -- LIKES
 -- GET ALL POST LIKES
     CREATE PROCEDURE GetLikesCount
@@ -180,7 +220,8 @@
         -- Return the like count
         SELECT @LikeCount AS 'LikeCount';
     END;
--- SAVE LIKE
+-- 
+-- SAVE LIKE  //LIKE POST
     CREATE PROCEDURE SaveLike
         @userID INT,
         @postID INT,
@@ -191,8 +232,8 @@
         INSERT INTO likes (userID, postID, commentID, timestamp)
         VALUES (@userID, @postID, @commentID, @timestamp);
     END;
-
--- DELETE LIKE
+-- 
+-- DELETE LIKE // UNLIKE POST
     CREATE PROCEDURE DeleteLike
         @likeID INT
     AS
@@ -200,3 +241,4 @@
         DELETE FROM likes
         WHERE likeID = @likeID;
     END;
+-- 

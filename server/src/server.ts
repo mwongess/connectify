@@ -1,9 +1,9 @@
 import express, { Application, json } from "express";
-import { startServer } from "./lib/boot";
+import { saveMessage } from "./utils/saveMessage";
 import { authRouter } from "./routes/auth.routes";
+import { startServer } from "./lib/boot";
 import { Server, Socket } from "socket.io";
 import http from "http";
-import { saveMessage } from "./utils/saveMessage";
 
 // Create Express app and HTTP server
 const app: Application = express();

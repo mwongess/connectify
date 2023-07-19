@@ -16,3 +16,7 @@ export interface ILikeRequest extends Request {
 export interface IMessageRequest extends Request {
   user?: IUserInfo;
 }
+export interface INotificationRequest extends Request {
+  user?: IUserInfo;
+}
+

@@ -164,11 +164,11 @@ VALUES
 
 -- Create the Notifications table
 CREATE TABLE Notifications (
-    ID INT IDENTITY(1, 1) PRIMARY KEY,
-    UserID INT NOT NULL,
-    NotificationType VARCHAR(50) NOT NULL,
-    SourceID INT,
-    Timestamp DATETIME NOT NULL,
+    notificationID INT IDENTITY(1, 1) PRIMARY KEY,
+    userID INT NOT NULL,
+    notificationType VARCHAR(50) NOT NULL,
+    targetID INT,
+    timestamp DATETIME NOT NULL,
     -- Add other columns as needed
 );
 

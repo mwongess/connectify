@@ -21,7 +21,7 @@ export const signup = async (req: ISignupRequest, res: Response) => {
       return res.json({ error: "Account already exists,use another email!" });
     }
     password = bcrypt.hashSync(password, 10);
-    await db.executeProcedure("NewUser", {
+    await db.executeProcedure("SaveUser", {
       user_id,
       userName,
       email,

@@ -1,14 +1,14 @@
 import { Connection } from "../helpers/db.helpers";
-import { Request, Response } from "express";
+import { Response } from "express";
 import { IFriendRequest } from "../types/other.types";
 
 const db = new Connection();
 
-export const friendSomeone = async (req: IFriendRequest, res: Response) => {
+export const SaveFriend = async (req: IFriendRequest, res: Response) => {
   try {
     const { userID: userID1 } = req.user!; //logged in user
     const { userID: userID2 } = req.params; //
-    db.executeProcedure("Connect", {
+    db.executeProcedure("SaveFriend", {
       userID1,
       userID2,
       requestStatus: "Accepted",

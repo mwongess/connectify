@@ -14,14 +14,14 @@ export const getComments = async (req: ICommentRequest, res: Response) => {
     if (!(await postExists(postID))) {
       res.json({ error: "Post may have been deleted!!" });
     }
-    const { recordset } = await db.executeProcedure("GetComments", {
+    const { recordset } = await db.executeProcedure("GetPostComments", {
       postID,
       userID,
     });
     if (!recordset[0]) {
       return res.json({ message: "No comments yet" });
     }
-    res.json({ comments: recordset });
+    res.json({ GetPostComments: recordset });
   } catch (error: any) {
     res.json(error.message);
   }
@@ -34,7 +34,7 @@ export const createComment = async (req: ICommentRequest, res: Response) => {
     if (!(await postExists(postID))) {
       res.json({ error: "Post may have been deleted😁" });
     }
-    db.executeProcedure("CreateComment", { userID, postID, commentText });
+    db.executeProcedure("SaveComment", { userID, postID, commentText });
   } catch (error) {
     res.json(error);
   }

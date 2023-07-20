@@ -8,15 +8,16 @@ import { postsRouter } from "./routes/posts.routes";
 import { likesRouter } from "./routes/likes.routes";
 import { commentsRouter } from "./routes/comments.routes";
 import { friendsRouter } from "./routes/friends.routes";
+import cors from "cors";
 
 // Create Express app and HTTP server
 const app: Application = express();
 const server = http.createServer(app);
 
+app.use(cors()); // Place the CORS middleware here to apply it to all routes
 app.use(json());
 
-// Create Socket.IO server
-const io = new Server(server);
+
 
 // App routes
 app.use("/auth", authRouter);
@@ -29,8 +30,15 @@ app.get("/", (req: Request, res: Response) => {
   res.json("yoo 😎");
 });
 
+// Create Socket.IO server
+const io = new Server(server,  {
+  cors: {
+    origin: "http://localhost:5173"
+  }});
+
 // Socket.IO event handlers
 io.on("connection", (socket: Socket) => {
+  console.log("A client connected.");
   // Handle incoming messages
   socket.on(
     "chatMessage",
@@ -58,7 +66,7 @@ io.on("connection", (socket: Socket) => {
 
   // Handle disconnection
   socket.on("disconnect", () => {
-    console.log("User isconnected");
+    console.log("User disconnected");
   });
 });
 
@@ -73,4 +81,4 @@ function findRecipientSocket(recipientID: string): Socket | undefined {
   return undefined;
 }
 
-startServer(app);
+startServer(server);

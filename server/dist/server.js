@@ -36,12 +36,12 @@ const posts_routes_1 = require("./routes/posts.routes");
 const likes_routes_1 = require("./routes/likes.routes");
 const comments_routes_1 = require("./routes/comments.routes");
 const friends_routes_1 = require("./routes/friends.routes");
+const cors_1 = __importDefault(require("cors"));
 // Create Express app and HTTP server
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
+app.use((0, cors_1.default)()); // Place the CORS middleware here to apply it to all routes
 app.use((0, express_1.json)());
-// Create Socket.IO server
-const io = new socket_io_1.Server(server);
 // App routes
 app.use("/auth", auth_routes_1.authRouter);
 app.use("/posts", posts_routes_1.postsRouter);
@@ -51,8 +51,15 @@ app.use("/friends", friends_routes_1.friendsRouter);
 app.get("/", (req, res) => {
     res.json("yoo 😎");
 });
+// Create Socket.IO server
+const io = new socket_io_1.Server(server, {
+    cors: {
+        origin: "http://localhost:5173"
+    }
+});
 // Socket.IO event handlers
 io.on("connection", (socket) => {
+    console.log("A client connected.");
     // Handle incoming messages
     socket.on("chatMessage", async (data) => {
         try {
@@ -73,7 +80,7 @@ io.on("connection", (socket) => {
     });
     // Handle disconnection
     socket.on("disconnect", () => {
-        console.log("User isconnected");
+        console.log("User disconnected");
     });
 });
 // Find the socket of the specified recipient
@@ -86,4 +93,4 @@ function findRecipientSocket(recipientID) {
     }
     return undefined;
 }
-(0, boot_1.startServer)(app);
+(0, boot_1.startServer)(server);

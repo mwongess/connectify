@@ -23,10 +23,10 @@ export const deleteUserMessages = async (
   res: Response
 ) => {
   try {
-    const {messageID} = req.body
+    const { messageID } = req.body;
     const { userID } = req.user!;
-    db.executeProcedure("DeleteMessage", {messageID,userID})
-    res.json({message: "Message has been deleted"})
+    db.executeProcedure("DeleteMessage", { messageID, userID });
+    res.json({ message: "Message has been deleted" });
   } catch (error: any) {
     res.json(error.message);
   }

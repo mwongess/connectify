@@ -4,7 +4,7 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
-export const startServer = (app: Application) => {
+export const startServer = (app:any) => {
   try {
     app.listen(PORT, () => {
       console.log(`Server is up and listening on port ${PORT}`);

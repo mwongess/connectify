@@ -129,7 +129,7 @@ BEGIN
     DELETE FROM friends
         WHERE friendID = @friendID;
 END;
-
+-- Check if following
 CREATE PROCEDURE CheckIfFollowing
     @userID1 INT,
     @userID2 INT
@@ -147,15 +147,50 @@ BEGIN
 
     SELECT @isFollowing AS IsFollowing;
 END;
+-- DELETE FRIENDSHIP
+CREATE PROCEDURE DeleteFriendship
+    @userID1 INT,
+    @userID2 INT
+AS
+BEGIN
+    DELETE FROM friends
+    WHERE
+        (userID1 = @userID1 AND userID2 = @userID2)
+        OR
+        (userID1 = @userID2 AND userID2 = @userID1);
+END;
+
+-- CHECK IF FRIENDSHIP EXISTS
+CREATE PROCEDURE CheckFriendshipExists
+    @userID1 INT,
+    @userID2 INT
+AS
+BEGIN
+    DECLARE @friendshipExists BIT;
+
+    SELECT @friendshipExists = CASE WHEN EXISTS (
+        SELECT 1
+        FROM friends
+        WHERE
+            (userID1 = @userID1 AND userID2 = @userID2)
+            OR
+            (userID1 = @userID2 AND userID2 = @userID1)
+    ) THEN 1 ELSE 0 END;
+
+    SELECT @friendshipExists AS FriendshipExists;
+END;
+
 
 -- 
 -- COMMENTS
 -- GET ALL COMMENTS
+DROP PROCEDURE GetPostComments
+
 CREATE PROCEDURE GetPostComments
     @postID INT
 AS
 BEGIN
-    SELECT c.commentText, c.timestamp
+    SELECT c.commentID, c.commentText, c.timestamp
     FROM comments c
     WHERE c.postID = @postID;
 END;

@@ -51,10 +51,16 @@ export const getYourFriends = async (req: IFriendRequest, res: Response) => {
   }
 };
 
-export const deleteFriend = async (req: IFriendRequest, res: Response) => {
+export const deleteFriendShip = async (req: IFriendRequest, res: Response) => {
   try {
     const { userID: userID1 } = req.user!; //logged in user
-    const { userID: userID2 } = req.params
+    const { userID: userID2 } = req.params;
+    const {recordset: friendshipExists} = await db.executeProcedure("CheckFriendshipExists", {userID1,userID2})
+    if(!friendshipExists[0].FriendshipExists){
+      return res.json({message: "Youre not friends"})
+    }
+    db.executeProcedure("DeleteFriendship", { userID1, userID2 });
+    res.json({ message: "Friendship has been deleted" });
   } catch (error: any) {
     res.json(error.message);
   }

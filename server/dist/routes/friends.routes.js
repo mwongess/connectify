@@ -7,4 +7,5 @@ const verifyToken_1 = require("../middlewares/verifyToken");
 exports.friendsRouter = (0, express_1.Router)();
 exports.friendsRouter
     .get("/", verifyToken_1.VerifyToken, friends_controllers_1.getYourFriends)
-    .post("/new/:userID", verifyToken_1.VerifyToken, friends_controllers_1.SaveFriend);
+    .post("/new/:userID", verifyToken_1.VerifyToken, friends_controllers_1.SaveFriend)
+    .delete("/delete/:userID", verifyToken_1.VerifyToken, friends_controllers_1.deleteFriendShip);

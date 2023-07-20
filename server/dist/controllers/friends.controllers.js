@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteFriend = exports.getYourFriends = exports.SaveFriend = void 0;
+exports.deleteFriendShip = exports.getYourFriends = exports.SaveFriend = void 0;
 const db_helpers_1 = require("../helpers/db.helpers");
 const db = new db_helpers_1.Connection();
 const SaveFriend = async (req, res) => {
@@ -49,13 +49,19 @@ const getYourFriends = async (req, res) => {
     }
 };
 exports.getYourFriends = getYourFriends;
-const deleteFriend = async (req, res) => {
+const deleteFriendShip = async (req, res) => {
     try {
         const { userID: userID1 } = req.user; //logged in user
         const { userID: userID2 } = req.params;
+        const { recordset: friendshipExists } = await db.executeProcedure("CheckFriendshipExists", { userID1, userID2 });
+        if (!friendshipExists[0].FriendshipExists) {
+            return res.json({ message: "Youre not friends" });
+        }
+        db.executeProcedure("DeleteFriendship", { userID1, userID2 });
+        res.json({ message: "Friendship has been deleted" });
     }
     catch (error) {
         res.json(error.message);
     }
 };
-exports.deleteFriend = deleteFriend;
+exports.deleteFriendShip = deleteFriendShip;

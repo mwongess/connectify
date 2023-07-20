@@ -1,1 +1,1 @@
-export const api: string = ""
+export const api: string = "http://localhost:3000"

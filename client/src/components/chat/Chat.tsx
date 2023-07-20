@@ -1,47 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { api } from "../../utils/domain";
 import io from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 const socket = io(api);
 
 interface Message {
-  sender: string;
-  content: string;
+  senderID: string;
+  messageContent: string;
 }
 
 const Chat: React.FC = () => {
-  const [senderID] = useState("");
+  const [senderID] = useState("mwongess");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
-      sender: "mwongess",
-      content: "Hello there!",
+      senderID: "mwongess",
+      messageContent: "Hello there!",
     },
     {
-      sender: "Jane",
-      content: "Hi Amos! How are you?",
+      senderID: "Jane",
+      messageContent: "Hi Amos! How are you?",
     },
     {
-      sender: "mwongess",
-      content: "I'm doing great. How about you?",
+      senderID: "mwongess",
+      messageContent: "I'm doing great. How about you?",
     },
   ]);
-
-  useEffect(() => {
-    // Event handler for receiving messages
-    socket.on("chatMessage", (data: Message) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
-    });
-
-    // Clean up the event listener
-    return () => {
-      socket.off("chatMessage");
-    };
-  }, []);
-
-  //   const handleSenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setSender(event.target.value);
-  //   };
+const {userName:recepientID }= useParams()
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
@@ -54,7 +40,7 @@ const Chat: React.FC = () => {
       // Send the message to the server
       socket.emit("chatMessage", {
         senderID,
-        recepientID: "recepientID",
+        recepientID,
         messageContent: message,
       });
 
@@ -62,7 +48,18 @@ const Chat: React.FC = () => {
       setMessage("");
     }
   };
+  useEffect(() => {
+    // Event handler for receiving messages
 
+    socket.on("chatMessage", (data: Message) => {
+      setMessages((prevMessages) => [...prevMessages, data]);
+    });
+
+    // Clean up the event listener
+    return () => {
+      socket.off("chatMessage");
+    };
+  }, []);
   return (
     <div className="container mx-auto h-screen">
       <div className="flex flex-col justify-between bg-white rounded-lg shadow-md p-4 mb-4 h-full">
@@ -71,17 +68,17 @@ const Chat: React.FC = () => {
             <div
               key={index}
               className={`flex mb-2 ${
-                msg.sender == "mwongess" ? "justify-end" : "justify-start"
+                msg.senderID == "mwongess" ? "justify-end" : "justify-start"
               }`}
             >
               <div
                 className={`px-4 py-2 rounded-lg ${
-                  msg.sender !== "mwongess"
+                  msg.senderID !== "mwongess"
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200"
                 }`}
               >
-                <p>{msg.content}</p>
+                <p>{msg.messageContent}</p>
               </div>
             </div>
           ))}

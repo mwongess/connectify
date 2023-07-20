@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
 import { Connection } from "../helpers/db.helpers";
 import { postExists } from "../utils/postExists";
+import { ILikeRequest } from "../types/other.types";
 
 const db = new Connection();
 
-export const like = async (req: Request, res: Response) => {
+export const SaveLike = async (req: ILikeRequest, res: Response) => {
   try {
-    const { UserID, PostID } = req.params as { UserID: string; PostID: string };
-    if (!(await postExists(PostID))) {
-      res.json({ error: "Post may have been deleted!!" });
+    const { postID } = req.params as { postID: string };
+    const { userID } = req.user!;
+    if (!(await postExists(postID))) {
+      return res.json({ error: "Post may have been deleted!!" });
     }
-    await db.executeProcedure("Like", { UserID, PostID });
+    await db.executeProcedure("SaveLike", { userID, postID });
     res.json({ message: "Like posted successfully" });
   } catch (error: any) {
     res.json(error.message);
@@ -19,12 +21,12 @@ export const like = async (req: Request, res: Response) => {
 
 export const getLikesCount = async (req: Request, res: Response) => {
   try {
-    const { PostID } = req.params as { UserID: string; PostID: string };
-    if (!(await postExists(PostID))) {
-      res.json({ error: "Post may have been deleted!!" });
+    const { postID } = req.params as { postID: string };
+    if (!(await postExists(postID))) {
+     return res.json({ error: "Post may have been deleted!!" });
     }
     const { recordset } = await db.executeProcedure("GetLikesCount", {
-      PostID,
+      postID,
     });
     res.json({ count: recordset[0] });
   } catch (error: any) {

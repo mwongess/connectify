@@ -37,9 +37,9 @@ export const deletePost = async (req: IPostRequest, res: Response) => {
     const { postID } = req.params;
     const { userID } = req.user!; //logged in user from token
     if (!(await postExists(postID))) {
-      res.json({ error: "Post may have been deleted😁" });
+      return res.json({ error: "Post may have been deleted😁" });
     }
-    await db.executeProcedure("DeletePost", { postID, userID });
+    await db.executeProcedure("DeletePost", { postID });
     res.json({ message: "Post deleted successfully✅." });
   } catch (error: any) {
     res.json(error.message);

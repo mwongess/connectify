@@ -1,9 +1,13 @@
-import express, { Application, json } from "express";
+import express, { Application, Request, Response, json } from "express";
 import { saveMessage } from "./utils/saveMessage";
 import { authRouter } from "./routes/auth.routes";
 import { startServer } from "./lib/boot";
 import { Server, Socket } from "socket.io";
 import http from "http";
+import { postsRouter } from "./routes/posts.routes";
+import { likesRouter } from "./routes/likes.routes";
+import { commentsRouter } from "./routes/comments.routes";
+import { friendsRouter } from "./routes/friends.routes";
 
 // Create Express app and HTTP server
 const app: Application = express();
@@ -16,6 +20,14 @@ const io = new Server(server);
 
 // App routes
 app.use("/auth", authRouter);
+app.use("/posts", postsRouter);
+app.use("/likes", likesRouter);
+app.use("/comments", commentsRouter);
+app.use("/friends", friendsRouter);
+
+app.get("/", (req: Request, res: Response) => {
+  res.json("yoo 😎");
+});
 
 // Socket.IO event handlers
 io.on("connection", (socket: Socket) => {

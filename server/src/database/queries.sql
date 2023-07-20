@@ -52,7 +52,7 @@ CREATE TABLE shares (
 
 -- Create the Friends table
 CREATE TABLE friends (
-    ID INT IDENTITY(1, 1) PRIMARY KEY,
+    friendID INT IDENTITY(1, 1) PRIMARY KEY,
     userID1 INT NOT NULL,
     userID2 INT NOT NULL,
     requestStatus VARCHAR(50) NOT NULL,

@@ -12,44 +12,46 @@ export const getComments = async (req: ICommentRequest, res: Response) => {
     const { postID } = req.params;
     const { userID } = req.user!;
     if (!(await postExists(postID))) {
-      res.json({ error: "Post may have been deleted!!" });
+      return res.json({ error: "Post may have been deleted!!" });
     }
     const { recordset } = await db.executeProcedure("GetPostComments", {
       postID,
-      userID,
     });
     if (!recordset[0]) {
       return res.json({ message: "No comments yet" });
     }
-    res.json({ GetPostComments: recordset });
+    res.json({ comments: recordset });
   } catch (error: any) {
     res.json(error.message);
   }
 };
 // comment
-export const createComment = async (req: ICommentRequest, res: Response) => {
+export const SaveComment = async (req: ICommentRequest, res: Response) => {
   try {
-    const { postID, commentText } = req.body;
+    const { commentText } = req.body;
+    const { postID} = req.params
     const { userID } = req.user!;
     if (!(await postExists(postID))) {
-      res.json({ error: "Post may have been deleted😁" });
+      return res.json({ error: "Post may have been deleted😁" });
     }
     db.executeProcedure("SaveComment", { userID, postID, commentText });
-  } catch (error) {
-    res.json(error);
+    res.json({message: "Comment has been saved"})
+  } catch (error:any) {
+    res.json(error.message);
   }
 };
 
 // delete comment
 export const deleteComment = async (req: ICommentRequest, res: Response) => {
   try {
-    const { commentID } = req.body;
-    const { userID } = req.user!;
+    const { commentID } = req.params;
+    // const { userID } = req.user!;
     if (!(await commentExists(commentID))) {
-      res.json({ error: "Comment is already deleted!!" });
+      return res.json({ error: "Comment is already deleted!!" });
     }
 
-    db.executeProcedure("DeleteComment", { commentID, userID });
+    db.executeProcedure("DeleteComment", { commentID });
+    res.json({message: "Comment has been deleted"})
   } catch (error) {
     res.json(error);
   }

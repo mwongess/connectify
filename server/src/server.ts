@@ -44,15 +44,17 @@ io.on("connection", (socket: Socket) => {
     "chatMessage",
     async (data: {
       senderID: string;
-      messageContent: string;
       recipientID: string;
+      messageContent: string;
     }) => {
       try {
+        console.log(data)
         // Save the message to the database
-        await saveMessage(data.senderID, data.recipientID, data.messageContent);
+        // await saveMessage(data.senderID, data.recipientID, data.messageContent);
 
         // Send the message to the specified recipient
         const recipientSocket = findRecipientSocket(data.recipientID);
+        // console.log(recipientSocket)
         if (recipientSocket) {
           recipientSocket.emit("chatMessage", data);
         } else {
@@ -74,6 +76,7 @@ io.on("connection", (socket: Socket) => {
 function findRecipientSocket(recipientID: string): Socket | undefined {
   const sockets = io.sockets.sockets.values();
   for (const socket of sockets) {
+    // console.log(socket.data)
     if (socket.data.recipientID === recipientID) {
       return socket;
     }

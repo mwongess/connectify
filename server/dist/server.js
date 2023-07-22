@@ -27,7 +27,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
-const saveMessage_1 = require("./utils/saveMessage");
 const auth_routes_1 = require("./routes/auth.routes");
 const boot_1 = require("./lib/boot");
 const socket_io_1 = require("socket.io");
@@ -63,10 +62,12 @@ io.on("connection", (socket) => {
     // Handle incoming messages
     socket.on("chatMessage", async (data) => {
         try {
+            console.log(data);
             // Save the message to the database
-            await (0, saveMessage_1.saveMessage)(data.senderID, data.recipientID, data.messageContent);
+            // await saveMessage(data.senderID, data.recipientID, data.messageContent);
             // Send the message to the specified recipient
             const recipientSocket = findRecipientSocket(data.recipientID);
+            // console.log(recipientSocket)
             if (recipientSocket) {
                 recipientSocket.emit("chatMessage", data);
             }
@@ -87,6 +88,7 @@ io.on("connection", (socket) => {
 function findRecipientSocket(recipientID) {
     const sockets = io.sockets.sockets.values();
     for (const socket of sockets) {
+        // console.log(socket.data)
         if (socket.data.recipientID === recipientID) {
             return socket;
         }

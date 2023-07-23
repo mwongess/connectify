@@ -1,18 +1,39 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { saveComment } from "../../redux/apicalls/otherApiCalls";
 
-const CreateComment = () => {
+const CreateComment = ({ postID }: { postID: string }) => {
   const [canPost, setCanPost] = useState<boolean>(false);
+  const [commentText, setCommentText] = useState("");
 
-  const handleCanPost = (e:any) => {
-    if (e.target.value.length >= 3) {
+  const queryClient = useQueryClient();
+
+  const handleCanPost = (e: any) => {
+    setCommentText(e.target.value);
+    if (e.target.value) {
       setCanPost(true);
       return;
     }
     setCanPost(false);
   };
+
+  const saveCommentMutation = useMutation({
+    mutationFn: () => saveComment(postID, commentText),
+    onSuccess: () => {
+      setCommentText("");
+      queryClient.invalidateQueries({ queryKey: ["comments"] });
+    },
+  });
+
+  const handleSubmitComment = (e: any) => {
+    e.preventDefault();
+    if (canPost && commentText) {
+      saveCommentMutation.mutate();
+    }
+  };
   return (
     <div className="my-2">
-      <form className="" action="">
+      <form className="" onSubmit={handleSubmitComment}>
         <div className="flex gap-2">
           <img
             className="h-[2.5rem] rounded-full"
@@ -23,6 +44,7 @@ const CreateComment = () => {
             <input
               className="border-2 border-blue-400 rounded-[50px] w-full h-[2.5rem] p-3"
               type="text"
+              value={commentText}
               placeholder="Add a comment ..."
               onChange={handleCanPost}
             />

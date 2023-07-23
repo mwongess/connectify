@@ -21,7 +21,7 @@ const CommentList = ({ postID }: { postID: string }) => {
   }
   return (
     <div>
-      <CreateComment />
+      <CreateComment postID={postID}/>
       {comments[0] && comments.map((comment) => <Comment comment={comment} />)}
     </div>
   );

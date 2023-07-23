@@ -1,5 +1,6 @@
 import axios from "axios";
 import { api } from "../../utils/domain";
+import { string } from "yup";
 
 export const getPosts = async () => {
   try {
@@ -16,25 +17,37 @@ export const getPosts = async () => {
     console.error("Error fetching data:", error);
   }
 };
-// Comments
+// Comments //
 export const getPostComments = async (postID: string) => {
   try {
     const { data } = await axios.get(api + "/comments/" + postID, {
       headers: {
         token: JSON.parse(localStorage.getItem("user")!),
       },
-    }); 
+    });
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 };
 
+export const saveComment = async (postID: string, commentText: string) => {
+  try {
+    const { data } = await axios.post(api + "/comments/" + postID + "/new",{commentText:commentText}, {
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")!),
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
 // Messages
 export const getMessages = async (senderID: string) => {
   try {
-    const { data } = await axios.get(api + "/messages/" + senderID); 
+    const { data } = await axios.get(api + "/messages/" + senderID);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);

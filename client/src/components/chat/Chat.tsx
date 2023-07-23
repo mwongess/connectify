@@ -2,32 +2,49 @@ import React, { useState, useEffect } from "react";
 import { api } from "../../utils/domain";
 import io from "socket.io-client";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const socket = io(api);
 
 interface Message {
   senderID: string;
+  recipientID: string;
   messageContent: string;
 }
 
 const Chat: React.FC = () => {
-  const [senderID] = useState("mwongess");
+  const [senderID] = useState("2");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
-    {
-      senderID: "mwongess",
-      messageContent: "Hello there!",
-    },
-    {
-      senderID: "Jane",
-      messageContent: "Hi Amos! How are you?",
-    },
-    {
-      senderID: "mwongess",
-      messageContent: "I'm doing great. How about you?",
-    },
+    // {
+    //   senderID: "1",
+    //   recipientID: "2",
+    //   messageContent: "Hello there!",
+    // },
+    // {
+    //   senderID: "2",
+    //   recipientID: "1",
+    //   messageContent: "Hi Amos! How are you?",
+    // },
+    // {
+    //   senderID: "1",
+    //   recipientID: "2",
+    //   messageContent: "I'm doing great. How about you?",
+    // },
   ]);
-const {userName:recepientID }= useParams()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(api + "/messages/" + senderID); // Replace with your API endpoint
+        setMessages(response.data.messages);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  const { userID: recipientID } = useParams();
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
@@ -40,7 +57,7 @@ const {userName:recepientID }= useParams()
       // Send the message to the server
       socket.emit("chatMessage", {
         senderID,
-        recepientID,
+        recipientID,
         messageContent: message,
       });
 
@@ -52,7 +69,10 @@ const {userName:recepientID }= useParams()
     // Event handler for receiving messages
 
     socket.on("chatMessage", (data: Message) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
+      if (messages[0]) {
+        setMessages((prevMessages) => [...prevMessages, data]);
+      }
+      setMessages(() => [data]);
     });
 
     // Clean up the event listener
@@ -64,24 +84,25 @@ const {userName:recepientID }= useParams()
     <div className="container mx-auto h-screen">
       <div className="flex flex-col justify-between bg-white rounded-lg shadow-md p-4 mb-4 h-full">
         <div>
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`flex mb-2 ${
-                msg.senderID == "mwongess" ? "justify-end" : "justify-start"
-              }`}
-            >
+          {messages &&
+            messages.map((msg, index) => (
               <div
-                className={`px-4 py-2 rounded-lg ${
-                  msg.senderID !== "mwongess"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200"
+                key={index}
+                className={`flex mb-2 ${
+                  msg.senderID == senderID ? "justify-end" : "justify-start"
                 }`}
               >
-                <p>{msg.messageContent}</p>
+                <div
+                  className={`px-4 py-2 rounded-lg ${
+                    msg.senderID == senderID
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200"
+                  }`}
+                >
+                  <p>{msg.messageContent}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         <div className="mb-4">
           <form className="flex" onSubmit={handleSubmit}>

@@ -38,7 +38,7 @@ export const router = createBrowserRouter(
         <Route path="/read" element={<ReadThread />} />
         <Route path="/community" element={<Community />} />
         <Route path="/messages" element={<MessagesLayout />} >
-          <Route path=":userName" element={<Chat/>}/>
+          <Route path=":userID" element={<Chat/>}/>
         </Route>
         <Route path="/notifications" element={<NotificationList />} />
         <Route path="/explore" element={<Explore />} />

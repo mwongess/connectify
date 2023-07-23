@@ -1,4 +1,4 @@
-import Thread from "./Thread"
+import Thread from "./Post"
 
 const ReadThread = () => {
   return (

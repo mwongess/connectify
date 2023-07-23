@@ -4,7 +4,7 @@ import { useState } from "react";
 import ThreadOptions from "./ThreadOptions";
 import { useNavigate } from "react-router-dom";
 
-const Thread = () => {
+const Post = () => {
   const [showComments, setShowComments] = useState<boolean>(false);
     const navigate = useNavigate()
   const toggleShowComments = () => {
@@ -43,4 +43,4 @@ const Thread = () => {
   );
 };
 
-export default Thread;
+export default Post;

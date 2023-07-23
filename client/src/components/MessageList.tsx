@@ -8,10 +8,7 @@ const MessageList = () => {
         type="text"
         placeholder="Search"
       />
-      <Message userName="amos" />
-      <Message userName="erick" />
-      <Message userName="mwongess" />
-      <Message userName="joy" />
+      <Message userID="2" />
     </div>
   );
 };

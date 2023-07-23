@@ -4,7 +4,7 @@ import { useState } from "react";
 import ThreadOptions from "./ThreadOptions";
 import { useNavigate } from "react-router-dom";
 
-const Post = () => {
+const Post = ({post}: {post: {postID: string,content: string}}) => {
   const [showComments, setShowComments] = useState<boolean>(false);
     const navigate = useNavigate()
   const toggleShowComments = () => {
@@ -29,15 +29,14 @@ const Post = () => {
           <p>Hey</p>
           <p className="text-blue-400">@js @react</p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi,
-            vero.
+           {post.content}
           </p>
         </div>
         <div>
           <img className="w-full object-cover" src="https://www.peerbits.com/static/91369e909293ae04560a158af8a8052c/c5b3e/benefits-of-reactjs-main-image.png" alt="" />
         </div>
         <ThreadOptions toggleShowComments={toggleShowComments} />
-        {showComments && <CommentList />}
+        {showComments && <CommentList postID={post.postID} />}
       </div>
     </div>
   );

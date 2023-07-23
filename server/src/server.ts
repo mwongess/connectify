@@ -8,6 +8,7 @@ import { postsRouter } from "./routes/posts.routes";
 import { likesRouter } from "./routes/likes.routes";
 import { commentsRouter } from "./routes/comments.routes";
 import { friendsRouter } from "./routes/friends.routes";
+import { messageRouter } from "./routes/messages.routes";
 import cors from "cors";
 
 // Create Express app and HTTP server
@@ -17,12 +18,11 @@ const server = http.createServer(app);
 app.use(cors()); // Place the CORS middleware here to apply it to all routes
 app.use(json());
 
-
-
 // App routes
 app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
 app.use("/likes", likesRouter);
+app.use("/messages", messageRouter);
 app.use("/comments", commentsRouter);
 app.use("/friends", friendsRouter);
 
@@ -31,10 +31,11 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // Create Socket.IO server
-const io = new Server(server,  {
+const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173"
-  }});
+    origin: "http://localhost:5173",
+  },
+});
 
 // Socket.IO event handlers
 io.on("connection", (socket: Socket) => {
@@ -48,9 +49,10 @@ io.on("connection", (socket: Socket) => {
       messageContent: string;
     }) => {
       try {
-        console.log(data)
+        console.log(data);
+        socket.emit("chatMessage", data);
         // Save the message to the database
-        // await saveMessage(data.senderID, data.recipientID, data.messageContent);
+        await saveMessage(data.senderID, data.recipientID, data.messageContent);
 
         // Send the message to the specified recipient
         const recipientSocket = findRecipientSocket(data.recipientID);

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import {
   FaNewspaper,
@@ -12,6 +12,12 @@ import {
 } from "react-icons/fa";
 
 const SideNav = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/auth.login");
+  };
   return (
     <div className="fixed w-[18%] flex flex-col text-[#4e5d78] min-h-screen gap-1 bg-white rounded-[10px] p-3">
       <div className="mb-4 select-none">
@@ -73,14 +79,11 @@ const SideNav = () => {
         <FaRegSun />
         Settings
       </NavLink>
-      <NavLink
-        to="/auth/login"
-        className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
-        end
-      >
+      <button onClick = {logout} className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3">
+        
         <FaSignOutAlt />
         Logout
-      </NavLink>
+      </button>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Comment = () => {
+const Comment = ({ comment }: { comment: { commentID: string,commentText: string} }) => {
   return (
     <div className="mt-3">
       <div className="flex  gap-2">
@@ -10,9 +10,13 @@ const Comment = () => {
           alt=""
         />
         <div className="bg-blue-100 rounded-[10px] p-3 w-full">
-          <Link to="" className="hover:underline hover:text-blue-500">Amos Mwongela</Link>
+          <Link to="" className="hover:underline hover:text-blue-500">
+            Amos Mwongela
+          </Link>
           <p className="cursor-pointer">Software Engineer</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, ipsam?</p>
+          <p>
+           {comment.commentText}
+          </p>
         </div>
       </div>
     </div>

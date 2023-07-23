@@ -16,10 +16,25 @@ export const getPosts = async () => {
     console.error("Error fetching data:", error);
   }
 };
+// Comments
+export const getPostComments = async (postID: string) => {
+  try {
+    const { data } = await axios.get(api + "/comments/" + postID, {
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")!),
+      },
+    }); 
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+
 // Messages
 export const getMessages = async (senderID: string) => {
   try {
-    const { data } = await axios.get(api + "/messages/" + senderID); // Replace with your API endpoint
+    const { data } = await axios.get(api + "/messages/" + senderID); 
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -34,6 +49,6 @@ export const getFollowers = async () => {
         token: JSON.parse(localStorage.getItem("user")!),
       },
     });
-    return data
+    return data;
   } catch (error) {}
 };

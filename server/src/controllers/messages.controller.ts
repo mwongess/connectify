@@ -6,7 +6,7 @@ const db = new Connection();
 
 export const getUserMessages = async (req: IMessageRequest, res: Response) => {
   try {
-    const { userID } = req.user!;
+    const { userID } = req.params;
     const { recordset } = await db.executeProcedure("GetUserMessages", {
       userID,
     });

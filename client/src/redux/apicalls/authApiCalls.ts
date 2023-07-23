@@ -1,15 +1,19 @@
-import axios from "axios";
-import { loginSuccess } from "../slices/userSlice";
-import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { ILoginPayload } from "../../types/userTypes";
 import { api } from "../../utils/domain";
+import { NavigateFunction } from "react-router-dom";
+import axios from "axios";
 
-export const loginUser = async (dispatch:Dispatch<AnyAction>, user: ILoginPayload) => {
-    // dispatch(loginStart());
-    try {
-      const { data } = await axios.post(`${api}/auth/login`, user);
-      dispatch(loginSuccess(data));
-    } catch (err) {
-    //   dispatch(loginFailure());
+export const loginUser = async (
+  user: ILoginPayload,
+  navigate: NavigateFunction
+) => {
+  try {
+    const { data } = await axios.post(`${api}/auth/login`, user);
+    if (data.token) {
+      localStorage.setItem("user", JSON.stringify(data.token));
+      navigate("/");
     }
-  };
+  } catch (err) {
+    console.error(err)
+  }
+};

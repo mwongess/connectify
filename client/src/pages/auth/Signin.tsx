@@ -7,9 +7,11 @@ import { ILoginPayload } from "../../types/userTypes";
 import { SigninFormData } from "../../types/formTypes";
 import { signinSchema } from "../../schemas/signinSchema";
 import { FaFacebookF } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   // const userName = useSelector(
   //   (state: RootState) => state.user.details!.userName
@@ -23,7 +25,7 @@ const Signin = () => {
     resolver: yupResolver(signinSchema),
   });
 
-  const onSubmit = (data: ILoginPayload) => loginUser(dispatch, data);
+  const onSubmit = (data: ILoginPayload) => loginUser(data,navigate);
 
   return (
     <form

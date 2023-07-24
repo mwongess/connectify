@@ -10,6 +10,7 @@ import { commentsRouter } from "./routes/comments.routes";
 import { friendsRouter } from "./routes/friends.routes";
 import { messageRouter } from "./routes/messages.routes";
 import cors from "cors";
+import { userRouter } from "./routes/user.routes";
 
 // Create Express app and HTTP server
 const app: Application = express();
@@ -25,6 +26,7 @@ app.use("/likes", likesRouter);
 app.use("/messages", messageRouter);
 app.use("/comments", commentsRouter);
 app.use("/friends", friendsRouter);
+app.use('/users', userRouter)
 
 app.get("/", (req: Request, res: Response) => {
   res.json("yoo 😎");

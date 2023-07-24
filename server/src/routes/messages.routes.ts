@@ -1,6 +1,12 @@
 import { Router } from "express";
-import { getUserMessages } from "../controllers/messages.controller";
+import {
+  deleteUserMessage,
+  getUserMessages,
+} from "../controllers/messages.controller";
+import { VerifyToken } from "../middlewares/verifyToken";
 
-export const messageRouter = Router()
+export const messageRouter = Router();
 
-messageRouter.get("/:userID",getUserMessages)
+messageRouter
+  .get("/:userID",VerifyToken, getUserMessages)
+  .delete("/:messageID", VerifyToken, deleteUserMessage);

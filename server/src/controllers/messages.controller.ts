@@ -18,13 +18,14 @@ export const getUserMessages = async (req: IMessageRequest, res: Response) => {
     res.json(error.message);
   }
 };
-export const deleteUserMessages = async (
+export const deleteUserMessage = async (
   req: IMessageRequest,
   res: Response
 ) => {
   try {
-    const { messageID } = req.body;
+    const { messageID } = req.params;
     const { userID } = req.user!;
+    console.log(messageID,userID)
     db.executeProcedure("DeleteMessage", { messageID, userID });
     res.json({ message: "Message has been deleted" });
   } catch (error: any) {

@@ -4,9 +4,11 @@ import { useState } from "react";
 import ThreadOptions from "./ThreadOptions";
 import { useNavigate } from "react-router-dom";
 
-const Post = ({post}: {post: {postID: string,content: string}}) => {
+const Post = ({ post }: { post: { postID: string; content: string } }) => {
   const [showComments, setShowComments] = useState<boolean>(false);
-    const navigate = useNavigate()
+
+  const navigate = useNavigate();
+  
   const toggleShowComments = () => {
     setShowComments((prevState) => !prevState);
   };
@@ -20,20 +22,18 @@ const Post = ({post}: {post: {postID: string,content: string}}) => {
           alt=""
         />
       </div>
-      <div>
+      <div className="w-full">
         <div className="cursor-pointer hover:underline hover:text-blue-400">
-          <h1 onClick={()=> navigate("/@mwongess")}>Amos Mwongela </h1>
+          <h1 onClick={() => navigate("/@mwongess")}>Amos Mwongela </h1>
           <p>@mwongess</p>
         </div>
         <div>
           <p>Hey</p>
           <p className="text-blue-400">@js @react</p>
-          <p>
-           {post.content}
-          </p>
+          <p>{post.content}</p>
         </div>
         <div>
-          <img className="w-full object-cover" src="https://www.peerbits.com/static/91369e909293ae04560a158af8a8052c/c5b3e/benefits-of-reactjs-main-image.png" alt="" />
+          {/* <img className="w-full object-cover" src="https://www.peerbits.com/static/91369e909293ae04560a158af8a8052c/c5b3e/benefits-of-reactjs-main-image.png" alt="" /> */}
         </div>
         <ThreadOptions toggleShowComments={toggleShowComments} />
         {showComments && <CommentList postID={post.postID} />}

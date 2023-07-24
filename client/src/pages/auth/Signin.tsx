@@ -46,6 +46,7 @@ const Signin = () => {
         <label htmlFor="">Password</label>
         <input
           className="border border-blue-600 rounded  p-2 w-full"
+          type="password"
           {...register("password")}
         />
         <p className="text-red-600">{errors.password?.message}</p>

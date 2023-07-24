@@ -15,27 +15,15 @@ interface Message {
 const Chat: React.FC = () => {
   const [senderID] = useState("2");
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<Message[]>([
-    // {
-    //   senderID: "1",
-    //   recipientID: "2",
-    //   messageContent: "Hello there!",
-    // },
-    // {
-    //   senderID: "2",
-    //   recipientID: "1",
-    //   messageContent: "Hi Amos! How are you?",
-    // },
-    // {
-    //   senderID: "1",
-    //   recipientID: "2",
-    //   messageContent: "I'm doing great. How about you?",
-    // },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(api + "/messages/" + senderID); // Replace with your API endpoint
+        const response = await axios.get(api + "/messages/" + senderID, {
+          headers: {
+            token: JSON.parse(localStorage.getItem("user")!),
+          },
+        });
         setMessages(response.data.messages);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -69,10 +57,12 @@ const Chat: React.FC = () => {
     // Event handler for receiving messages
 
     socket.on("chatMessage", (data: Message) => {
-      if (messages[0]) {
-        setMessages((prevMessages) => [...prevMessages, data]);
-      }
-      setMessages(() => [data]);
+      setMessages((prevMessages) => {
+        if (prevMessages) {
+          return [...prevMessages, data];
+        }
+        return [data];
+      });
     });
 
     // Clean up the event listener

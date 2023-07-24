@@ -1,10 +1,39 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { savePost } from "../../redux/apicalls/otherApiCalls";
+import { FormEvent, useState } from "react";
+
 const CreatePost = () => {
+  // const [imgUrl,setImgUrl] = useState("")
+  const [content, setContent] = useState("");
+  
+  const queryClient = useQueryClient();
+  
+  const handleSavePostMutation = useMutation({
+    mutationFn: () => savePost(content),
+    onSuccess: () => {
+      setContent("");
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
+  const handleSavePost = (e: FormEvent) => {
+    e.preventDefault();
+    console.log(content);
+    handleSavePostMutation.mutate();
+  };
+
   return (
     <div>
-      <form className="border-2 bg-white mb-3  p-2 rounded-[10px]" action="">
+      <form
+        onSubmit={handleSavePost}
+        className="border-2 bg-white mb-3  p-2 rounded-[10px]"
+        action=""
+      >
         <div className="flex ">
           <textarea
+            onChange={(e) => setContent(e.target.value)}
             className=" rounded w-full p-3 focus:outline-none"
+            value={content}
             name=""
             id=""
             cols={30}

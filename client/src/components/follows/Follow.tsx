@@ -1,6 +1,6 @@
 import FollowBtn from "../buttons/follow/FollowBtn";
 
-const Follow = () => {
+const Follow = ({ user }: { user: { name: string; userName: string } }) => {
   return (
     <>
       <form action="">
@@ -13,7 +13,7 @@ const Follow = () => {
             />
             <div className="">
               <h1>Name</h1>
-              <p>userName</p>
+              <p>{user.userName}</p>
             </div>
           </div>
           <FollowBtn />

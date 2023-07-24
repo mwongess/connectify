@@ -26,7 +26,7 @@ app.use("/likes", likesRouter);
 app.use("/messages", messageRouter);
 app.use("/comments", commentsRouter);
 app.use("/friends", friendsRouter);
-app.use('/users', userRouter)
+app.use("/users", userRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.json("yoo 😎");

@@ -51,7 +51,7 @@ app.use("/likes", likes_routes_1.likesRouter);
 app.use("/messages", messages_routes_1.messageRouter);
 app.use("/comments", comments_routes_1.commentsRouter);
 app.use("/friends", friends_routes_1.friendsRouter);
-app.use('/users', user_routes_1.userRouter);
+app.use("/users", user_routes_1.userRouter);
 app.get("/", (req, res) => {
     res.json("yoo 😎");
 });

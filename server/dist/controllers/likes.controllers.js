@@ -22,13 +22,14 @@ exports.SaveLike = SaveLike;
 const getLikesCount = async (req, res) => {
     try {
         const { postID } = req.params;
+        const { userID } = req.user;
         if (!(await (0, postExists_1.postExists)(postID))) {
             return res.json({ error: "Post may have been deleted!!" });
         }
-        const { recordset } = await db.executeProcedure("GetLikesCount", {
-            postID,
+        const { recordset } = await db.executeProcedure("isLikedAndCount", {
+            postID, userID
         });
-        res.json({ count: recordset[0] });
+        res.json({ likes: recordset[0] });
     }
     catch (error) {
         res.json(error.message);

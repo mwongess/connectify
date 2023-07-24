@@ -19,16 +19,17 @@ export const SaveLike = async (req: ILikeRequest, res: Response) => {
   }
 };
 
-export const getLikesCount = async (req: Request, res: Response) => {
+export const getLikesCount = async (req:  ILikeRequest, res: Response) => {
   try {
     const { postID } = req.params as { postID: string };
+    const { userID } = req.user!;
     if (!(await postExists(postID))) {
      return res.json({ error: "Post may have been deleted!!" });
     }
-    const { recordset } = await db.executeProcedure("GetLikesCount", {
-      postID,
+    const { recordset } = await db.executeProcedure("isLikedAndCount", {
+      postID,userID
     });
-    res.json({ count: recordset[0] });
+    res.json({ likes: recordset[0] });
   } catch (error: any) {
     res.json(error.message);
   }

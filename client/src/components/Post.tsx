@@ -1,17 +1,20 @@
 // import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 import CommentList from "./comments/CommentList";
-import { useState } from "react";
 import ThreadOptions from "./ThreadOptions";
 import { useNavigate } from "react-router-dom";
 
-const Post = ({ post }: { post: { postID: string; content: string } }) => {
-  const [showComments, setShowComments] = useState<boolean>(false);
-
-  const navigate = useNavigate();
+const Post = ({
+  post,
+  isOpen,
+  toggleOpenPost,
+}: {
+  post: {userID:string, userName:string,postID: string; content: string };
+  isOpen: boolean;
+  toggleOpenPost: (postID: string) => void;
+}) => {
+  console.log(post);
   
-  const toggleShowComments = () => {
-    setShowComments((prevState) => !prevState);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="flex gap-2 bg-white rounded-[10px] p-3 mb-4 text-lg select-none">
@@ -24,8 +27,8 @@ const Post = ({ post }: { post: { postID: string; content: string } }) => {
       </div>
       <div className="w-full">
         <div className="cursor-pointer hover:underline hover:text-blue-400">
-          <h1 onClick={() => navigate("/@mwongess")}>Amos Mwongela </h1>
-          <p>@mwongess</p>
+          <h1 onClick={() => navigate("/"+ post.userID)}>Amos Mwongela </h1>
+          <p>@{post.userName}</p>
         </div>
         <div>
           <p>Hey</p>
@@ -35,8 +38,8 @@ const Post = ({ post }: { post: { postID: string; content: string } }) => {
         <div>
           {/* <img className="w-full object-cover" src="https://www.peerbits.com/static/91369e909293ae04560a158af8a8052c/c5b3e/benefits-of-reactjs-main-image.png" alt="" /> */}
         </div>
-        <ThreadOptions toggleShowComments={toggleShowComments} />
-        {showComments && <CommentList postID={post.postID} />}
+        <ThreadOptions toggleShowComments={() => toggleOpenPost(post.postID)} />
+        {isOpen && <CommentList postID={post.postID} />}
       </div>
     </div>
   );

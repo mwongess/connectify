@@ -1,9 +1,32 @@
-import "./followBtn.css"
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { followSomeone } from "../../../redux/apicalls/otherApiCalls";
+import "./followBtn.css";
+import { FormEvent } from "react";
 
-const FollowBtn = () => {
+const FollowBtn = ({ userID }: { userID: string }) => {
+  const queryClient = useQueryClient();
+
+  const followMutation = useMutation({
+    mutationFn: () => followSomeone(userID),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["followers"] });
+    },
+  });
+
+  const handleFollow = (e: FormEvent) => {
+    e.preventDefault();
+    followMutation.mutate();
+  };
+
   return (
-    <button className="button" style={{verticalAlign:"middle"}}><span>Follow</span></button>
-  )
-}
+    <button
+      onClick={handleFollow}
+      className="button"
+      style={{ verticalAlign: "middle" }}
+    >
+      <span>Follow</span>
+    </button>
+  );
+};
 
-export default FollowBtn
+export default FollowBtn;

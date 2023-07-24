@@ -29,7 +29,7 @@ export const savePost = async (content: string) => {
         },
       }
     );
-    return data
+    return data;
   } catch (error) {
     console.error("error");
   }
@@ -86,7 +86,19 @@ export const getFollowers = async () => {
     return data;
   } catch (error) {}
 };
-
+// Follow
+export const followSomeone = async (userID: string) => {
+  try {
+    const { data } = await axios.post(api + "/friends/new/" + userID, {},{
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")!),
+      },
+    });
+    return data
+  } catch (error) {
+    console.error(error);
+  }
+};
 // All users
 export const getAllUsers = async () => {
   try {

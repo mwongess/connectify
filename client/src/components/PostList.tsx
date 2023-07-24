@@ -1,33 +1,45 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import Post from "./Post";
 import { getPosts } from "../redux/apicalls/otherApiCalls";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import Skeleton from "./skeleton/Skeleton";
-// import CreatePost from "./post/CreatePost";
-// import PostList from "./post/PostList";
+import Post from "./Post";
 
 const PostList = () => {
+  const [openPostID, setOpenPostID] = useState<string | null>(null);
   const [posts, setPosts] = useState([]);
-  // Access the client
-  // Queries
-  const { status, data } = useQuery({ queryKey: ["posts"], queryFn: getPosts}) as any
+
+  // Function to toggle the open post
+  const toggleOpenPost = (postID: string) => {
+    setOpenPostID((prevPostID) => (prevPostID === postID ? null : postID));
+    console.log(openPostID);
+  };
+
+  // Query
+  const { status, data } = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  }) as any;
 
   useEffect(() => {
     if (data) {
       setPosts(data.posts);
     }
-    
   }, [data]);
+
   if (status === "loading") {
-    return <Skeleton/>;
+    return <Skeleton />;
   }
+
   return (
     <div className="col-span-2">
-      {/* <PostList/> */}
-      {/* <CreatePost/> */}
-      {posts && posts.map((post) => (
-        <Post post={post}/>
-      ))}
+      {posts &&
+        posts.map((post: any) => (
+          <Post
+            post={post}
+            isOpen={openPostID === post.postID}
+            toggleOpenPost={toggleOpenPost}
+          />
+        ))}
     </div>
   );
 };

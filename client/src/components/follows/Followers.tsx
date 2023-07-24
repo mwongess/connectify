@@ -19,7 +19,7 @@ const Followers = () => {
   return (
     <>
       {!followers[0] && <h1>You have no friends yet</h1>}
-      {followers[0] && followers.map((follower) => <Follower />)}
+      {followers[0] && followers.map((follower) => <Follower follower={follower} />)}
     </>
   );
 };

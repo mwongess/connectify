@@ -1,9 +1,13 @@
 import FollowBtn from "../buttons/follow/FollowBtn";
 
-const Follow = ({ user }: { user: { name: string; userName: string } }) => {
+const Follow = ({
+  user,
+}: {
+  user: { userID: string; name: string; userName: string };
+}) => {
   return (
     <>
-      <form action="">
+      <form>
         <div className="flex justify-between items-center cursor-pointer p-2">
           <div className="flex items-center gap-2 ">
             <img
@@ -16,10 +20,9 @@ const Follow = ({ user }: { user: { name: string; userName: string } }) => {
               <p>{user.userName}</p>
             </div>
           </div>
-          <FollowBtn />
+          <FollowBtn userID={user.userID} />
         </div>
       </form>
-
       <hr />
     </>
   );

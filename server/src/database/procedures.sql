@@ -50,17 +50,37 @@ CREATE PROCEDURE GetConnectedUserPosts
     @userID INT
 AS
 BEGIN
-            SELECT p.*
-        FROM posts p
-            INNER JOIN friends f ON p.userID = f.userID2
-        WHERE f.userID1 = @userID AND f.requestStatus = 'Accepted'
+    SELECT
+        u.userID,
+        u.userName,
+        u.email,
+        u.profileUrl,
+        p.postID,
+        p.content,
+        p.imgUrl,
+        p.timestamp
+    FROM friends f
+    INNER JOIN users u ON f.userID2 = u.userID
+    INNER JOIN posts p ON u.userID = p.userID
+    WHERE f.userID1 = @userID AND f.requestStatus = 'Accepted'
 
     UNION
 
-        SELECT *
-        FROM posts
-        WHERE userID = @userID;
+    SELECT
+        u.userID,
+        u.userName,
+        u.email,
+        u.profileUrl,
+        p.postID,
+        p.content,
+        p.imgUrl,
+        p.timestamp 
+    FROM users u
+    INNER JOIN posts p ON u.userID = p.userID
+    WHERE u.userID = @userID;
 END;
+
+
 
 
 -- 
@@ -185,7 +205,6 @@ END;
 -- COMMENTS
 -- GET ALL COMMENTS
 DROP PROCEDURE GetPostComments
-
 CREATE PROCEDURE GetPostComments
     @postID INT
 AS
@@ -264,27 +283,29 @@ END;
 -- 
 -- MESSAGES
 -- GET ALL MESSAGES
+DROP PROCEDURE GetUserMessages
 CREATE PROCEDURE GetUserMessages
     @userID INT
 AS
 BEGIN
-    SELECT m.messageContent, m.timestamp
+    SELECT *
     FROM messages m
     WHERE m.senderID = @userID OR m.recipientID = @userID;
 END;
 -- 
 -- SAVE A MESSAGE
+DROP PROCEDURE SaveMessage;
+
 CREATE PROCEDURE SaveMessage
     @senderID INT,
     @recipientID INT,
-    @messageContent VARCHAR(MAX),
-    @timestamp DATETIME
+    @messageContent VARCHAR(MAX)
 AS
 BEGIN
     INSERT INTO messages
         (senderID, recipientID, messageContent, timestamp)
     VALUES
-        (@senderID, @recipientID, @messageContent, @timestamp);
+        (@senderID, @recipientID, @messageContent, GETDATE());
 END;
 -- 
 -- DELETE A MESSAGE
@@ -300,6 +321,27 @@ END;
 -- 
 -- LIKES
 -- GET ALL POST LIKES
+DROP PROCEDURE isLikedAndCount
+
+CREATE PROCEDURE isLikedAndCount
+    @userID INT,
+    @postID INT
+AS
+BEGIN
+    DECLARE @isLiked BIT, @likeCount INT;
+
+    -- Check if the user has liked the post
+    SELECT @isLiked = CASE WHEN EXISTS (SELECT 1 FROM likes WHERE userID = @userID AND postID = @postID) THEN 1 ELSE 0 END;
+
+    -- Count the number of likes for the post
+    SELECT @likeCount = COUNT(*) FROM likes WHERE postID = @postID;
+
+    -- Return the results
+    SELECT @isLiked AS IsLiked, @likeCount AS LikeCount;
+END;
+
+
+
 DROP PROCEDURE GetLikesCount
 CREATE PROCEDURE GetLikesCount
     @postID INT
@@ -337,3 +379,11 @@ BEGIN
         WHERE likeID = @likeID;
 END;
 -- 
+
+DROP PROCEDURE GetUsers
+CREATE PROCEDURE GetUsers
+AS
+BEGIN
+    SELECT *
+    FROM users
+END

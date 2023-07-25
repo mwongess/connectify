@@ -1,3 +1,5 @@
+CREATE DATABASE connectify
+
 -- Create the Users table
 CREATE TABLE users (
     userID INT IDENTITY(1, 1) PRIMARY KEY,
@@ -6,16 +8,23 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     profileUrl VARCHAR(255)
 );
-
+select  * from users
 -- Create the Posts table
+DROP TABLE posts
 CREATE TABLE posts (
     postID INT IDENTITY(1, 1) PRIMARY KEY,
     userID INT NOT NULL,
     content VARCHAR(255) NOT NULL,
     imgUrl VARCHAR(255) DEFAULT NULL,
-    timestamp DATETIME NOT NULL,
+    timestamp DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (userID) REFERENCES users(userID)
 );
+
+ALTER TABLE posts
+ADD timestamp DEFAULT GETDATE()
+-- Add a default constraint to an existing column
+ALTER TABLE posts
+ADD CONSTRAINT c_post DEFAULT GETDATE() FOR timestamp;
 
 -- Create the Comments table
 CREATE TABLE comments (
@@ -27,7 +36,7 @@ CREATE TABLE comments (
     FOREIGN KEY (postID) REFERENCES posts(postID),
     FOREIGN KEY (userID) REFERENCES users(userID)
 );
-
+select * from comments
 -- Create the Likes table
 CREATE TABLE likes (
     likeID INT IDENTITY(1, 1) PRIMARY KEY,
@@ -39,7 +48,7 @@ CREATE TABLE likes (
     FOREIGN KEY (postID) REFERENCES posts(postID),
     FOREIGN KEY (commentID) REFERENCES comments(commentID)
 );
-
+select * from likes
 -- Create the Shares table
 CREATE TABLE shares (
     shareID INT IDENTITY(1, 1) PRIMARY KEY,
@@ -50,6 +59,7 @@ CREATE TABLE shares (
     FOREIGN KEY (postID) REFERENCES posts(postID)
 );
 
+DROP TABLE friends
 -- Create the Friends table
 CREATE TABLE friends (
     friendID INT IDENTITY(1, 1) PRIMARY KEY,

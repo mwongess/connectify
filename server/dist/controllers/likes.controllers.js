@@ -29,7 +29,7 @@ const getLikesCount = async (req, res) => {
         const { recordset } = await db.executeProcedure("isLikedAndCount", {
             postID, userID
         });
-        res.json({ likes: recordset[0] });
+        res.json({ likes: recordset });
     }
     catch (error) {
         res.json(error.message);

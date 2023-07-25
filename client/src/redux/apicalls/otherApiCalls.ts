@@ -89,12 +89,16 @@ export const getFollowers = async () => {
 // Follow
 export const followSomeone = async (userID: string) => {
   try {
-    const { data } = await axios.post(api + "/friends/new/" + userID, {},{
-      headers: {
-        token: JSON.parse(localStorage.getItem("user")!),
-      },
-    });
-    return data
+    const { data } = await axios.post(
+      api + "/friends/new/" + userID,
+      {},
+      {
+        headers: {
+          token: JSON.parse(localStorage.getItem("user")!),
+        },
+      }
+    );
+    return data;
   } catch (error) {
     console.error(error);
   }
@@ -103,6 +107,21 @@ export const followSomeone = async (userID: string) => {
 export const getAllUsers = async () => {
   try {
     const { data } = await axios.get(api + "/users", {
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")!),
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Get a post likes
+
+export const getPostLikes = async (postID: string) => {
+  try {
+    const { data } = await axios.get(api + "/likes/" + postID, {
       headers: {
         token: JSON.parse(localStorage.getItem("user")!),
       },

@@ -1,7 +1,9 @@
 // import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 import CommentList from "./comments/CommentList";
 import ThreadOptions from "./ThreadOptions";
 import { useNavigate } from "react-router-dom";
+import { getPostLikes } from "../redux/apicalls/otherApiCalls";
 
 const Post = ({
   post,
@@ -12,6 +14,7 @@ const Post = ({
   isOpen: boolean;
   toggleOpenPost: (postID: string) => void;
 }) => {
+ 
   console.log(post);
   
   const navigate = useNavigate();

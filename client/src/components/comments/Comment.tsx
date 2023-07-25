@@ -5,8 +5,8 @@ const Comment = ({ comment }: { comment: { commentID: string,commentText: string
     <div className="mt-3">
       <div className="flex  gap-2">
         <img
-          className="h-[2.5rem] rounded-full"
-          src="https://media.licdn.com/dms/image/C4D03AQELuT887ddBjA/profile-displayphoto-shrink_200_200/0/1657864494797?e=1694649600&v=beta&t=8AnzqZSKdNKTTFanSEf6k1Qpe9kYGJXcvuELsPkiI_c"
+          className="h-[2rem] rounded-full"
+          src="https://uploads-ssl.webflow.com/5e30313b9d703b5281c5bfeb/5e35a1517c077b7e6edcb164_AJ_Logo.svg"
           alt=""
         />
         <div className="bg-blue-100 rounded-[10px] p-3 w-full">

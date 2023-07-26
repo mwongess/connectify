@@ -5,5 +5,6 @@ export interface ILoginPayload {
 
 export interface ISignupPayload {
     userName: string
+    fullName: string
     password: string
 }

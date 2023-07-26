@@ -10,6 +10,7 @@ const Post = ({
   post: {
     userID: string;
     userName: string;
+    fullName: string
     postID: string;
     content: string;
     postLikesCount: string;
@@ -32,7 +33,7 @@ const Post = ({
       </div>
       <div className="w-full">
         <div className="cursor-pointer hover:underline hover:text-blue-400">
-          <h1 onClick={() => navigate("/" + post.userID)}>Amos Mwongela </h1>
+          <h1 onClick={() => navigate("/" + post.userID)}>{post.fullName}</h1>
           <p>{post.userName}</p>
         </div>
         <div>

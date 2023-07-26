@@ -5,6 +5,8 @@ import { ISignupPayload } from "../../types/userTypes";
 import { signupSchema } from "../../schemas/signupSchema";
 import { FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { signupUser } from "../../redux/apicalls/authApiCalls";
+
 const Signup = () => {
   const {
     register,
@@ -14,7 +16,7 @@ const Signup = () => {
     resolver: yupResolver(signupSchema),
   });
 
-  const onSubmit = (data: ISignupPayload) => console.log(data);
+  const onSubmit = (data: ISignupPayload) => signupUser(data)
 
   return (
     <form
@@ -23,6 +25,15 @@ const Signup = () => {
     >
       <div className="w-full">
         <h1 className="font-bold text-2xl">Signup</h1>
+
+        <label htmlFor="">Full Name</label>
+        <input
+          className="border border-blue-600 rounded  p-2 w-full"
+          {...register("fullName")}
+        />
+        <p className="text-red-600">{errors.userName?.message}</p>
+      </div>
+      <div className="w-full">
         <label htmlFor="">Username</label>
         <input
           className="border border-blue-600 rounded  p-2 w-full"
@@ -42,6 +53,7 @@ const Signup = () => {
       <div className="w-full">
         <label htmlFor="">Password</label>
         <input
+        type="password"
           className=" border border-blue-600 rounded  p-2 w-full"
           {...register("password")}
         />

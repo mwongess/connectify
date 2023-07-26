@@ -11,7 +11,7 @@ export const loginUser = async (
     const { data } = await axios.post(`${api}/auth/login`, user);
     if (data.token) {
       localStorage.setItem("user", JSON.stringify(data.token));
-      navigate("/");
+      navigate("/home");
     }
   } catch (err) {
     console.error(err)
@@ -24,7 +24,7 @@ export const signupUser = async (
 ) => {
   try {
     const { data } = await axios.post(`${api}/auth/signup`, user);
-    
+    return data
   } catch (err) {
     console.error(err)
   }

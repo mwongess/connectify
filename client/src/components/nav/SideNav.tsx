@@ -65,7 +65,7 @@ const SideNav = () => {
         Explore
       </NavLink>
       <NavLink
-        to="/@mwongess"
+        to="/"
         className="flex items-center gap-2 hover:text-blue-500 hover:font-bold rounded-[10px] p-3"
         end
       >

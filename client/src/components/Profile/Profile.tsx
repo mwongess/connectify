@@ -1,8 +1,19 @@
 // import Recommendations from "../follows/Recommendations";
 // import NewsFeed from "../NewsFeed";
+import { useQuery } from "@tanstack/react-query";
 import Intro from "./Intro";
+import { getOneUser } from "../../redux/apicalls/otherApiCalls";
+import { useEffect, useState } from "react";
 
 const Profile = () => {
+  const [userName, setUserName] = useState("")
+
+  const {data} = useQuery({
+    queryKey: ["user"],
+    queryFn: ()=>getOneUser(userName),
+  })
+
+ 
   return (
     <div className="">
       <div className="relative m-0 p-0 ">
@@ -15,14 +26,14 @@ const Profile = () => {
         </div>
         <div className="p-3 inline-block  translate-y-[-20%]">
           <img
-            className="rounded-full border border-blue-500 "
-            src="https://media.licdn.com/dms/image/C4D03AQELuT887ddBjA/profile-displayphoto-shrink_200_200/0/1657864494797?e=1694649600&v=beta&t=8AnzqZSKdNKTTFanSEf6k1Qpe9kYGJXcvuELsPkiI_c "
+            className="rounded-full h-[10rem] w-[10rem] sm:h-[13.5rem] sm:w-[13.5rem] object-fit border border-blue-500 "
+            src={ data?.profileUrl || "https://t3.ftcdn.net/jpg/03/91/19/22/360_F_391192211_2w5pQpFV1aozYQhcIw3FqA35vuTxJKrB.jpg"}
             alt=""
           />
-          <h1 className="text-2xl">Amos Mwongela</h1>
-          <p className="text-[#4e5d78]">Software Engineer</p>
+          <h1 className="text-2xl">{data?.user[0].fullName || "Full Name"}</h1>
+          <p className="text-[#4e5d78]">{data?.user[0].proffession || "Proffession"}</p>
           <div className="grid grid-cols-4 gap-5 mt-5">
-            <Intro />
+            <Intro data={data}/>
             {/* <NewsFeed /> */}
             <div></div>
             {/* <Recommendations /> */}

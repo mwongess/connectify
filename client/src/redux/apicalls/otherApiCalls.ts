@@ -131,3 +131,18 @@ export const getPostLikes = async (postID: string) => {
     console.error(error);
   }
 };
+
+// Get one user;
+export const getOneUser =async (userName:string) => {
+  try {
+    const {data} =await axios.get(api + "/users/me",  {
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")!),
+      },
+    });
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+  
+}

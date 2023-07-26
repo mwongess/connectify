@@ -1,21 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-const Intro = () => {
+const Intro = ({ data }: any) => {
   return (
     <div className="flex flex-col text-[#4e5d78] gap-2 ">
-        <h1 className="font-bold ">INTRO</h1>
-        <Link to={""}>mwongess.me</Link>
-        <Link to={""}>Male</Link>
-        <Link to={""}>Born Jan 11, 2001</Link>
-        <Link to={""}>Kirinyaga</Link>
-        <Link to={""}>Facebook</Link>
-        <Link to={""}>Twitter</Link>
-        <Link to={""}>Instagram</Link>
-        <p>2508 Followers</p>
-        <p>23 Following</p>
+      <h1 className="font-bold ">INTRO</h1>
+      <Link to={""}>{data?.user[0].website || "Website"}</Link>
+      <Link to={""}>{data?.user[0].gender || "Gender"}</Link>
+      <Link to={""}>{data?.user[0].birthdate || "Birthdate"}</Link>
+      <Link to={""}>{data?.user[0].location || "Kenya"}</Link>
+      <Link to={""}>Facebook</Link>
+      <Link to={""}>{data?.user[0].twitter || "Twitter"}</Link>
+      <Link to={""}>Instagram</Link>
+      <p className="font-bold">{data?.user[0].followers || "_Followers"}</p>
+      <p className="font-bold">{data?.user[0].following || "_Following"}</p>
     </div>
+  );
+};
 
-  )
-}
-
-export default Intro
+export default Intro;

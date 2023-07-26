@@ -1,22 +1,24 @@
-// import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
-import { useQuery } from "@tanstack/react-query";
 import CommentList from "./comments/CommentList";
 import ThreadOptions from "./ThreadOptions";
 import { useNavigate } from "react-router-dom";
-import { getPostLikes } from "../redux/apicalls/otherApiCalls";
 
 const Post = ({
   post,
   isOpen,
   toggleOpenPost,
 }: {
-  post: {userID:string, userName:string,postID: string; content: string };
+  post: {
+    userID: string;
+    userName: string;
+    postID: string;
+    content: string;
+    postLikesCount: string;
+  };
   isOpen: boolean;
   toggleOpenPost: (postID: string) => void;
 }) => {
- 
   console.log(post);
-  
+
   const navigate = useNavigate();
 
   return (
@@ -30,18 +32,21 @@ const Post = ({
       </div>
       <div className="w-full">
         <div className="cursor-pointer hover:underline hover:text-blue-400">
-          <h1 onClick={() => navigate("/"+ post.userID)}>Amos Mwongela </h1>
-          <p>@{post.userName}</p>
+          <h1 onClick={() => navigate("/" + post.userID)}>Amos Mwongela </h1>
+          <p>{post.userName}</p>
         </div>
         <div>
-          <p>Hey</p>
-          <p className="text-blue-400">@js @react</p>
+          <p>Hello</p>
+          <p className="text-blue-400">@socket @node @react @ts</p>
           <p>{post.content}</p>
         </div>
         <div>
           {/* <img className="w-full object-cover" src="https://www.peerbits.com/static/91369e909293ae04560a158af8a8052c/c5b3e/benefits-of-reactjs-main-image.png" alt="" /> */}
         </div>
-        <ThreadOptions toggleShowComments={() => toggleOpenPost(post.postID)} />
+        <ThreadOptions
+          toggleShowComments={() => toggleOpenPost(post.postID)}
+          postLikesCount={post.postLikesCount}
+        />
         {isOpen && <CommentList postID={post.postID} />}
       </div>
     </div>

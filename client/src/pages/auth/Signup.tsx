@@ -1,13 +1,11 @@
-// import { useSelector, useDispatch } from "react-redux";
-// import { RootState } from "../../types/stateTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignupFormData } from "../../types/formTypes";
 import { ISignupPayload } from "../../types/userTypes";
 import { signupSchema } from "../../schemas/signupSchema";
 import { FaFacebookF } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Signup = () => {
-  // const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -71,6 +69,11 @@ const Signup = () => {
           <FaFacebookF className="text-blue-800" />
           Facebook
         </button>
+      </div>
+      <div className="border w-full">
+        <Link className="text-blue-700 text-lg underline" to="/auth/login">
+          Sign in here
+        </Link>
       </div>
     </form>
   );

@@ -14,6 +14,7 @@ const Post = ({
     postID: string;
     content: string;
     postLikesCount: string;
+    isLikedByUser: 1 | 0
   };
   isOpen: boolean;
   toggleOpenPost: (postID: string) => void;
@@ -46,7 +47,9 @@ const Post = ({
         </div>
         <ThreadOptions
           toggleShowComments={() => toggleOpenPost(post.postID)}
+          postID={post.postID}
           postLikesCount={post.postLikesCount}
+          isLiked={post.isLikedByUser}
         />
         {isOpen && <CommentList postID={post.postID} />}
       </div>

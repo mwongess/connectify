@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Follower from "./Follower";
 import { getFollowers } from "../../redux/apicalls/otherApiCalls";
 import { useEffect, useState } from "react";
+import FollowersFallback from "./FollowersFallback";
 
 const Followers = () => {
   const [followers, setFollowers] = useState([]);
@@ -18,7 +19,7 @@ const Followers = () => {
   }, [data]);
   return (
     <>
-      {!followers[0] && <h1>You have no friends yet</h1>}
+      {!followers[0] && <FollowersFallback/>}
       {followers[0] && followers.map((follower) => <Follower follower={follower} />)}
     </>
   );

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Skeleton from "./skeleton/Skeleton";
 import Post from "./Post";
+import PostFallback from "./post/PostFallback";
 
 const PostList = () => {
   const [openPostID, setOpenPostID] = useState<string | null>(null);
@@ -29,7 +30,9 @@ const PostList = () => {
   if (status === "loading") {
     return <Skeleton />;
   }
-
+  if (!posts) {
+    return <PostFallback />;
+  }
   return (
     <div className="col-span-2">
       {posts &&

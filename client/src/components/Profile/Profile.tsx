@@ -3,14 +3,12 @@
 import { useQuery } from "@tanstack/react-query";
 import Intro from "./Intro";
 import { getOneUser } from "../../redux/apicalls/otherApiCalls";
-import { useEffect, useState } from "react";
 
 const Profile = () => {
-  const [userName, setUserName] = useState("")
 
   const {data} = useQuery({
     queryKey: ["user"],
-    queryFn: ()=>getOneUser(userName),
+    queryFn: getOneUser,
   })
 
  

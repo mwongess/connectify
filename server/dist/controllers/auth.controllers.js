@@ -14,7 +14,7 @@ const db = new db_helpers_1.Connection();
 const signup = async (req, res) => {
     try {
         // const user_id = uuid();
-        let { userName, email, password } = req.body;
+        let { fullName, userName, email, password } = req.body;
         const { error, value } = auth_schemas_1.SignupSchema.validate(req.body);
         if (error) {
             return res.status(500).json({ error: error.details[0].message });
@@ -25,7 +25,7 @@ const signup = async (req, res) => {
         }
         password = bcrypt_1.default.hashSync(password, 10);
         await db.executeProcedure("SaveUser", {
-            // user_id,
+            fullName,
             userName,
             email,
             password,
@@ -44,8 +44,7 @@ const login = async (req, res) => {
         if (error) {
             return res.status(500).json({ error: error.details[0].message });
         }
-        const user = (await db.executeProcedure("GetUser", { userName }))
-            .recordset;
+        const user = (await db.executeProcedure("GetUser", { userName })).recordset;
         if (!user[0]) {
             return res.json({ error: "Account doesnt exist!" });
         }

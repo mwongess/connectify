@@ -10,6 +10,7 @@ export interface ILoginRequest extends Request {
 
 export interface ISignupRequest extends Request {
   body: {
+    fullName: string
     userName: string;
     email: string;
     password: string;

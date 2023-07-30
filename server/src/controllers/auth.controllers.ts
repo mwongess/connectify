@@ -5,15 +5,15 @@ import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
 const db = new Connection();
 
 export const signup = async (req: ISignupRequest, res: Response) => {
   try {
     // const user_id = uuid();
-    let { userName, email, password } = req.body;
+    let { fullName, userName, email, password } = req.body;
     const { error, value } = SignupSchema.validate(req.body);
     if (error) {
       return res.status(500).json({ error: error.details[0].message });
@@ -24,7 +24,7 @@ export const signup = async (req: ISignupRequest, res: Response) => {
     }
     password = bcrypt.hashSync(password, 10);
     await db.executeProcedure("SaveUser", {
-      // user_id,
+      fullName,
       userName,
       email,
       password,
@@ -42,8 +42,7 @@ export const login = async (req: ILoginRequest, res: Response) => {
     if (error) {
       return res.status(500).json({ error: error.details[0].message });
     }
-    const user = (await db.executeProcedure("GetUser", { userName }))
-      .recordset;
+    const user = (await db.executeProcedure("GetUser", { userName })).recordset;
     if (!user[0]) {
       return res.json({ error: "Account doesnt exist!" });
     }

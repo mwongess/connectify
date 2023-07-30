@@ -5,4 +5,4 @@ const express_1 = require("express");
 const verifyToken_1 = require("../middlewares/verifyToken");
 const user_controllers_1 = require("../controllers/user.controllers");
 exports.userRouter = (0, express_1.Router)();
-exports.userRouter.get("", verifyToken_1.VerifyToken, user_controllers_1.getAllUsers);
+exports.userRouter.get("/", verifyToken_1.VerifyToken, user_controllers_1.getAllUsers).get("/me", verifyToken_1.VerifyToken, user_controllers_1.getOneUser).put("/", verifyToken_1.VerifyToken, user_controllers_1.updateUser);

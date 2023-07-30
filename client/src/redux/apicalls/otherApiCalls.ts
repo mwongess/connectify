@@ -160,3 +160,16 @@ export const likeOrUnlike =async (postID:string) => {
     
   }
 }
+
+// Update profile
+export const updateProfile =async (fullName:string, email:string, ) => {
+  try {
+    const {data} = await axios.put(api + "/users/" ,{fullName, email},{
+      headers: {
+        token: JSON.parse(localStorage.getItem("user")!),
+      },
+    });
+  } catch (error) {
+    console.error(error)
+  }
+}

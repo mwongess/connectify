@@ -82,7 +82,7 @@ const Signup = () => {
           Facebook
         </button>
       </div>
-      <div className="border w-full">
+      <div className="w-full">
         <Link className="text-blue-700 text-lg underline" to="/auth/login">
           Sign in here
         </Link>

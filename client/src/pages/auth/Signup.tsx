@@ -20,9 +20,12 @@ const Signup = () => {
 
   return (
     <form
-      className="sm:flex flex-col sm:items-center sm:justify-center  sm:w-[40%] w-full gap-6 sm:p-[3rem] p-[2rem]"
+      className="flex flex-col sm:items-center sm:justify-center  w-full  sm:w-[40%] gap-6 sm:p-[3rem] p-[2rem]"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <div className="sm:hidden w-full">
+        <h1>Connectify</h1>
+      </div>
       <div className="w-full">
         <h1 className="font-bold text-3xl mb-6">Sign up</h1>
 
@@ -30,11 +33,11 @@ const Signup = () => {
         <input
           className="border border-blue-600  p-2 w-full"
           {...register("name")}
-          placeholder = "Your name"
+          placeholder="Your name"
         />
         <p className="text-red-600">{errors.name?.message}</p>
       </div>
-      
+
       <div className="w-full">
         <label className="font-bold" htmlFor="">Email<span className="text-red-600">*</span></label>
         <input
@@ -55,7 +58,7 @@ const Signup = () => {
         />
         <p className="text-red-600">{errors.password?.message}</p>
       </div>
-      
+
       <button className="bg-blue-800 text-white rounded w-full p-2 mt-2">
         Sign up
       </button>
@@ -70,10 +73,10 @@ const Signup = () => {
           Facebook
         </button>
       </div>
-      <div className="w-full">
-        <Link className="text-blue-700 text-lg underline" to="/auth/login">
-          Sign in here
-        </Link>
+      <div className="flex items-center justify-center text-lg w-full text-center">
+        <p className="flex items-center w-fit">Already got an account?<Link className="text-blue-700  underline" to="/auth/login">
+          Sign in
+        </Link></p>
       </div>
     </form>
   );

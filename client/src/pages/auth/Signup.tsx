@@ -23,8 +23,9 @@ const Signup = () => {
       className="flex flex-col sm:items-center sm:justify-center  w-full  sm:w-[40%] gap-6 sm:p-[3rem] p-[2rem]"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="sm:hidden w-full">
-        <h1>Connectify</h1>
+      <div className="sm:hidden flex items-center gap-3 mb-4 select-none">
+        <img className="h-[3rem]" src="/logo1.png" alt="" />
+        <p className="rounded-full p-2 border-2 border-blue-800 text-center h-fit">Connectify Beta</p>
       </div>
       <div className="w-full">
         <h1 className="font-bold text-3xl mb-6">Sign up</h1>

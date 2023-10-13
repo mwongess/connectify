@@ -20,32 +20,27 @@ const Signup = () => {
 
   return (
     <form
-      className="sm:flex flex-col sm:items-center sm:justify-center  sm:w-[40%] w-full gap-2 sm:p-[7rem] p-[2rem]"
+      className="sm:flex flex-col sm:items-center sm:justify-center  sm:w-[40%] w-full gap-6 sm:p-[3rem] p-[2rem]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="w-full">
-        <h1 className="font-bold text-2xl">Signup</h1>
+        <h1 className="font-bold text-2xl mb-3">Signup</h1>
 
-        <label htmlFor="">Full Name</label>
+        <label htmlFor="">Name</label>
         <input
-          className="border border-blue-600 rounded  p-2 w-full"
+          className="border border-blue-600  p-2 w-full"
           {...register("fullName")}
+          placeholder = "Your name"
         />
         <p className="text-red-600">{errors.userName?.message}</p>
       </div>
-      <div className="w-full">
-        <label htmlFor="">Username</label>
-        <input
-          className="border border-blue-600 rounded  p-2 w-full"
-          {...register("userName")}
-        />
-        <p className="text-red-600">{errors.userName?.message}</p>
-      </div>
+      
       <div className="w-full">
         <label htmlFor="">Email</label>
         <input
           className="border border-blue-600 rounded  p-2 w-full"
           {...register("email")}
+          placeholder="example@connectify.com"
         />
         <p className="text-red-600">{errors.email?.message}</p>
       </div>
@@ -53,21 +48,14 @@ const Signup = () => {
       <div className="w-full">
         <label htmlFor="">Password</label>
         <input
-        type="password"
+          type="password"
           className=" border border-blue-600 rounded  p-2 w-full"
           {...register("password")}
+          placeholder="********"
         />
         <p className="text-red-600">{errors.password?.message}</p>
       </div>
-      <div className="w-full">
-        <label htmlFor="">Confirm Password</label>
-        <input
-          className="border border-blue-600 rounded p-2 w-full"
-          type="password"
-          {...register("password")}
-        />
-        <p className="text-red-600">{errors.password?.message}</p>
-      </div>
+      
       <button className="bg-blue-800 text-white rounded w-full p-2 mt-2">
         Sign Up
       </button>

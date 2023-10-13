@@ -53,11 +53,11 @@ const Signin = () => {
       </button>
       <p>Continue with</p>
       <div className="flex justify-between gap-2 w-full mt-2">
-        <button className="flex items-center gap-3 border border-black w-[50%] p-2 rounded">
+        <button className="flex items-center justify-center gap-3 border border-black w-[50%] p-2 rounded">
           <img className=" w-[1rem] " src="/google.png" alt="" />
           Google
         </button>
-        <button className="flex items-center gap-3 border border-black w-[50%] p-2  rounded">
+        <button className="flex items-center  justify-center gap-3 border border-black w-[50%] p-2  rounded">
           <FaFacebookF className="text-blue-800" />
           Facebook
         </button>

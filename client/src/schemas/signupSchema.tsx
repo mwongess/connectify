@@ -2,8 +2,7 @@ import * as yup from "yup";
 
 export const signupSchema = yup
   .object({
-    fullName: yup.string().required("Full Name is required!"),
-    userName: yup.string().required("Username is required!"),
+    name: yup.string().required("Your name is required!"),
     email: yup
       .string()
       .email("Email must contain @ !")

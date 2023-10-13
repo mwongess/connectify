@@ -24,19 +24,19 @@ const Signup = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="w-full">
-        <h1 className="font-bold text-2xl mb-3">Signup</h1>
+        <h1 className="font-bold text-3xl mb-6">Sign up</h1>
 
-        <label htmlFor="">Name</label>
+        <label className="font-bold" htmlFor="">Name<span className="text-red-600">*</span></label>
         <input
           className="border border-blue-600  p-2 w-full"
-          {...register("fullName")}
+          {...register("name")}
           placeholder = "Your name"
         />
-        <p className="text-red-600">{errors.userName?.message}</p>
+        <p className="text-red-600">{errors.name?.message}</p>
       </div>
       
       <div className="w-full">
-        <label htmlFor="">Email</label>
+        <label className="font-bold" htmlFor="">Email<span className="text-red-600">*</span></label>
         <input
           className="border border-blue-600 rounded  p-2 w-full"
           {...register("email")}
@@ -46,7 +46,7 @@ const Signup = () => {
       </div>
 
       <div className="w-full">
-        <label htmlFor="">Password</label>
+        <label className="font-bold" htmlFor="">Password<span className="text-red-600">*</span></label>
         <input
           type="password"
           className=" border border-blue-600 rounded  p-2 w-full"
@@ -57,7 +57,7 @@ const Signup = () => {
       </div>
       
       <button className="bg-blue-800 text-white rounded w-full p-2 mt-2">
-        Sign Up
+        Sign up
       </button>
       <p>Continue with</p>
       <div className="flex justify-between gap-2 w-full">

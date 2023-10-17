@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { saveComment } from "../../redux/apicalls/otherApiCalls";
+import { saveComment } from "../../utils/otherFns";
 
 const CreateComment = ({ postID }: { postID: string }) => {
   const [canPost, setCanPost] = useState<boolean>(false);

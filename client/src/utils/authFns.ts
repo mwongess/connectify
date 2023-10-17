@@ -1,5 +1,5 @@
-import { ILoginPayload, ISignupPayload } from "../../types/userTypes";
-import { api } from "../../utils/domain";
+import { ILoginPayload, ISignupPayload } from "../types/userTypes";
+import { api } from "./domain";
 import { NavigateFunction } from "react-router-dom";
 import axios from "axios";
 

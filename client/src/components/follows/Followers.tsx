@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Follower from "./Follower";
-import { getFollowers } from "../../redux/apicalls/otherApiCalls";
+import { getFollowers } from "../../utils/otherFns";
 import { useEffect, useState } from "react";
 import FollowersFallback from "./FollowersFallback";
 

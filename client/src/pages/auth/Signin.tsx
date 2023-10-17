@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginUser } from "../../redux/apicalls/authApiCalls";
+import { loginUser } from "../../utils/authFns";
 import { ILoginPayload } from "../../types/userTypes";
 import { SigninFormData } from "../../types/formTypes";
 import { signinSchema } from "../../schemas/signinSchema";

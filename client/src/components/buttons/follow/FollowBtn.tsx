@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { followSomeone } from "../../../redux/apicalls/otherApiCalls";
+import { followSomeone } from "../../../utils/otherFns";
 import "./followBtn.css";
 import { FormEvent } from "react";
 

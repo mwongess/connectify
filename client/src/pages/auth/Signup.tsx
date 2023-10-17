@@ -5,7 +5,7 @@ import { ISignupPayload } from "../../types/userTypes";
 import { signupSchema } from "../../schemas/signupSchema";
 import { FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { signupUser } from "../../redux/apicalls/authApiCalls";
+import { signupUser } from "../../utils/authFns";
 
 const Signup = () => {
   const {

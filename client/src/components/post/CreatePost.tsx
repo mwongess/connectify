@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { savePost } from "../../redux/apicalls/otherApiCalls";
+import { savePost } from "../../utils/otherFns";
 import { FormEvent, useState } from "react";
 
 const CreatePost = () => {

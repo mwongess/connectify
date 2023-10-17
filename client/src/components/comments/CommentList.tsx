@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Comment from "./Comment";
 import CreateComment from "./CreateComment";
-import { getPostComments } from "../../redux/apicalls/otherApiCalls";
+import { getPostComments } from "../../utils/otherFns";
 import { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
 

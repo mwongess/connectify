@@ -1,4 +1,4 @@
-import { getPosts } from "../redux/apicalls/otherApiCalls";
+import { getPosts } from "../utils/otherFns";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Skeleton from "./skeleton/Skeleton";

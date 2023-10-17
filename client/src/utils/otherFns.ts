@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "../../utils/domain";
+import { api } from "./domain";
 
 // Fetch all the posts
 export const getPosts = async () => {

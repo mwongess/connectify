@@ -1,4 +1,4 @@
-import { getOneUser, updateProfile } from "../../redux/apicalls/otherApiCalls";
+import { getOneUser, updateProfile } from "../../utils/otherFns";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

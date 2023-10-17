@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
-import { likeOrUnlike } from "../redux/apicalls/otherApiCalls";
+import { likeOrUnlike } from "../utils/otherFns";
 
 const ThreadOptions = ({
   postID,

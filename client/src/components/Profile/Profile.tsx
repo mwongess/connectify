@@ -2,7 +2,7 @@
 // import NewsFeed from "../NewsFeed";
 import { useQuery } from "@tanstack/react-query";
 import Intro from "./Intro";
-import { getOneUser } from "../../redux/apicalls/otherApiCalls";
+import { getOneUser } from "../../utils/otherFns";
 
 const Profile = () => {
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "./domain";
+import { api } from "./apiEndpoint";
 
 // Fetch all the posts
 export const getPosts = async () => {

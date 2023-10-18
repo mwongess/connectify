@@ -1,8 +1,10 @@
+const env = import.meta.env
+
 const config = {
-    appwriteUrl: String(process.env.NEXT_PUBLIC_APPWRITE_URL),
-    appwriteProjectId: String(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID),
-    appwriteDatabaseId: String(process.env.NEXT_PUBLIC_DATABASE_ID),
-    appwriteCollectionId: String(process.env.NEXT_PUBLIC_COLLECTION_ID ),
+    appwriteUrl: String(env.VITE_APPWRITE_URL),
+    appwriteProjectId: String(env.VITE_APPWRITE_PROJECT_ID),
+    appwriteDatabaseId: String(env.VITE_DATABASE_ID),
+    appwriteCollectionId: String(env.VITE_PUBLIC_COLLECTION_ID ),
 };
 
 export default config;
